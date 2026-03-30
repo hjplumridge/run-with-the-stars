@@ -199,14 +199,17 @@ function findNearest(){
     const location=country?`${city}, ${country}`:city;
     lbl.innerHTML='<span class="spin">◌</span> Searching '+location+'…';
     showLoading('Searching for iconic runs filmed in '+location);
-    const query=`Find me the most famous or iconic running scene from any film, TV show or music video that was actually filmed ON LOCATION in ${location} or the nearest major city to it. The scene must have been physically shot there — not just set there. Return the route based on the real filming locations.`;
+    const query=`Find me the most famous or iconic running scene from any film, TV show or music video that was filmed ON LOCATION as close as possible to ${location}. If nothing was filmed in ${city} itself, find the nearest city or location where a famous running scene was actually shot. Always return a result — never return an error.`;
     try{
       const route=await fetchRoute(query);
       lbl.textContent='Found near you — '+route.name;
       showRoute(99,`Filmed in ${city}: ${route.name} (${route.source})`);
     }catch(err){
       lbl.textContent='Find my nearest iconic route';
-      alert('Could not find a route filmed in '+city+'. Try searching for a specific film instead.');
+      // Final fallback — find closest hardcoded route by distance
+      let best=ROUTES[0],bestD=Infinity;
+      ROUTES.forEach(r=>{const d=haversine(lat,lon,r.lat,r.lon);if(d<bestD){bestD=d;best=r;}});
+      showRoute(best.id,`Nearest iconic route to you: ${best.name} (${best.source}) — ${best.loc}`);
     }finally{hideLoading();}
   },()=>{lbl.textContent='Find my nearest iconic route';alert('Location access denied — please enable permissions and try again.');});
 }
