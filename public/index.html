@@ -8,37 +8,41 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-:root { --lime: #c8ff00; --lime-mid: rgba(200,255,0,0.55); --lime-low: rgba(200,255,0,0.25); --lime-faint: rgba(200,255,0,0.1); }
+:root { --lime: #c8ff00; --lime-mid: rgba(200,255,0,0.82); --lime-low: rgba(200,255,0,0.25); --lime-faint: rgba(200,255,0,0.1); }
 html, body { width: 100%; min-height: 100vh; overflow-x: hidden; background: #000; }
 body { font-family: 'Barlow Condensed', sans-serif; color: var(--lime); position: relative; }
 #night-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
 .site { position: relative; z-index: 1; min-height: 100vh; }
-.hero { display: flex; flex-direction: column; align-items: center; padding: 56px 24px 48px; text-align: center; }
-.runner-outer { width: 100%; display: flex; justify-content: center; margin-bottom: 32px; }
-h1 { font-size: clamp(28px, 5.5vw, 64px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.0; color: var(--lime); max-width: 760px; margin-bottom: 20px; }
-.sub { font-size: clamp(15px, 2vw, 20px); font-weight: 400; line-height: 1.6; color: var(--lime-mid); max-width: 560px; margin-bottom: 36px; }
-.search-wrap { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 0; }
+.hero { display: flex; flex-direction: column; align-items: center; padding: 24px 24px 32px; text-align: center; }
+.runner-outer { width: 100%; display: flex; justify-content: center; margin-bottom: 12px; }
+h1 { font-size: clamp(22px, 4.5vw, 52px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.0; color: var(--lime); max-width: 700px; margin-bottom: 10px; }
+.sub { font-size: clamp(13px, 1.8vw, 18px); font-weight: 400; line-height: 1.5; color: var(--lime-mid); max-width: 520px; margin-bottom: 16px; }
+.mode-wrap { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 10px; }
+.mode-btns { display: flex; gap: 10px; width: 100%; }
+.mode-btn { flex: 1; background: rgba(200,255,0,0.07); border: 1.5px solid var(--lime-low); color: var(--lime-low); padding: 13px 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.15s; }
+.mode-btn:hover { border-color: var(--lime-mid); color: var(--lime-mid); }
+.mode-btn.active { background: rgba(200,255,0,0.14); border-color: var(--lime); color: var(--lime); }
+.search-panel { display: none; width: 100%; }
+.search-panel.visible { display: flex; }
 .search-row { display: flex; width: 100%; border: 1.5px solid var(--lime-mid); background: rgba(0,0,0,0.5); }
 .search-row:focus-within { border-color: var(--lime); }
 .search-input { flex: 1; background: none; border: none; outline: none; padding: 13px 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 400; color: var(--lime); letter-spacing: 0.3px; }
 .search-input::placeholder { color: var(--lime-low); }
 .search-btn { background: var(--lime); color: #000; border: none; padding: 13px 22px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: opacity 0.15s; white-space: nowrap; }
 .search-btn:hover { opacity: 0.85; }
-.nearest-btn { width: 100%; background: rgba(200,255,0,0.07); border: 1.5px solid var(--lime-mid); color: var(--lime); padding: 15px 22px; font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
-.nearest-btn:hover { background: rgba(200,255,0,0.14); border-color: var(--lime); }
-.routes-section { padding: 52px 0 56px; text-align: center; }
-.routes-label { font-size: 11px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--lime-low); margin-bottom: 32px; }
+.routes-section { padding: 36px 0 40px; text-align: center; }
+.routes-label { font-size: 11px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--lime-low); margin-bottom: 24px; }
 .fp-track { display: flex; gap: 20px; overflow-x: auto; padding: 8px 32px 16px; justify-content: center; flex-wrap: wrap; scrollbar-width: none; }
 .fp-track::-webkit-scrollbar { display: none; }
-.fp-card { flex-shrink: 0; cursor: pointer; position: relative; width: 120px; transition: transform 0.2s; }
+.fp-card { flex-shrink: 0; cursor: pointer; position: relative; width: 110px; transition: transform 0.2s; }
 .fp-card:hover { transform: translateY(-5px); }
 .fp-card.active .fp-outline { stroke: var(--lime); filter: drop-shadow(0 0 8px rgba(200,255,0,0.5)); }
 .fp-outline { stroke: var(--lime-mid); fill: none; stroke-width: 1.5; transition: stroke 0.2s; }
 .fp-card:hover .fp-outline { stroke: var(--lime); }
-.fp-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 10px 38px; text-align: center; pointer-events: none; }
-.fp-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--lime); line-height: 1.15; margin-bottom: 5px; }
-.fp-source { font-size: 9px; font-weight: 300; font-style: italic; color: var(--lime-mid); margin-bottom: 8px; line-height: 1.3; }
-.fp-meta { font-size: 9px; font-weight: 700; color: var(--lime-low); letter-spacing: 0.5px; line-height: 1.6; }
+.fp-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 8px 34px; text-align: center; pointer-events: none; }
+.fp-name { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--lime); line-height: 1.15; margin-bottom: 4px; }
+.fp-source { font-size: 8px; font-weight: 300; font-style: italic; color: var(--lime-mid); margin-bottom: 6px; line-height: 1.3; }
+.fp-meta { font-size: 8px; font-weight: 700; color: var(--lime-low); letter-spacing: 0.5px; line-height: 1.6; }
 #detail { display: none; max-width: 580px; margin: 0 auto; padding: 0 24px 80px; }
 #detail.visible { display: block; }
 .found-msg { font-size: 11px; font-weight: 400; color: var(--lime-low); letter-spacing: 1px; text-align: center; margin-bottom: 20px; padding: 10px; border: 1px solid var(--lime-faint); }
@@ -75,7 +79,7 @@ h1 { font-size: clamp(28px, 5.5vw, 64px); font-weight: 800; text-transform: uppe
 .loading-sub { font-size: 13px; font-weight: 300; color: var(--lime-low); letter-spacing: 2px; }
 #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--lime); color: #000; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; padding: 11px 28px; opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 9999; white-space: nowrap; }
 #toast.show { opacity: 1; }
-footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--lime-faint); }
+footer { display: flex; justify-content: space-between; align-items: center; padding: 24px 32px; font-size: 10px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--lime-faint); }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 .fu { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
 .fu1 { animation-delay: 0.05s; } .fu2 { animation-delay: 0.18s; } .fu3 { animation-delay: 0.32s; } .fu4 { animation-delay: 0.46s; } .fu5 { animation-delay: 0.58s; }
@@ -92,19 +96,22 @@ footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; l
 <canvas id="night-bg"></canvas>
 <div class="site">
   <div class="hero">
-    <div class="runner-outer fu fu1" style="width:100%;max-width:700px;margin-bottom:32px;">
+    <div class="runner-outer fu fu1" style="width:100%;max-width:260px;margin-bottom:12px;">
       <canvas id="hero-canvas" style="display:block;width:100%;"></canvas>
     </div>
     <h1 class="fu fu2">Run the route from your favourite film, TV show or music video.</h1>
     <p class="sub fu fu3">Every iconic run from pop culture has a real location. Find it, get the Google Maps route, and run, Forest, run!</p>
-    <div class="search-wrap fu fu4">
-      <div class="search-row">
-        <input class="search-input" id="q" placeholder="Enter a film, TV show, or music video..."/>
-        <button class="search-btn" onclick="doSearch()">Find Route</button>
+    <div class="mode-wrap fu fu4">
+      <div class="mode-btns">
+        <button class="mode-btn" id="btn-title" onclick="setMode('title')">Search by Title</button>
+        <button class="mode-btn" id="btn-location" onclick="setMode('location')">Search by Location</button>
       </div>
-      <button class="nearest-btn" id="nb" onclick="findNearest()">
-        <span id="nb-lbl">Find my nearest iconic route</span>
-      </button>
+      <div class="search-panel" id="search-panel">
+        <div class="search-row">
+          <input class="search-input" id="q" placeholder=""/>
+          <button class="search-btn" onclick="doSearch()">Find Route</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="routes-section fu fu5">
@@ -112,7 +119,10 @@ footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; l
     <div class="fp-track" id="fp-track"></div>
   </div>
   <div id="detail"><div id="detail-inner"></div></div>
-  <footer>Run With The Stars &nbsp;&#183;&nbsp; Iconic scenes. Real routes. Your legs.</footer>
+  <footer>
+    <span>Run With The Stars &nbsp;&#183;&nbsp; Iconic scenes. Real routes. Your legs.</span>
+    <span>Created by Henry Plumridge.</span>
+  </footer>
 </div>
 <div id="toast"></div>
 <script>
@@ -206,50 +216,34 @@ async function fetchRoute(query){
   return route;
 }
 
+var _searchMode=null;
+
+function setMode(mode){
+  _searchMode=mode;
+  document.getElementById('btn-title').classList.toggle('active',mode==='title');
+  document.getElementById('btn-location').classList.toggle('active',mode==='location');
+  var panel=document.getElementById('search-panel');
+  var input=document.getElementById('q');
+  panel.classList.add('visible');
+  input.value='';
+  input.placeholder=mode==='title'?'Enter a film, TV show, or music video...':'Enter a city, town or country...';
+  setTimeout(function(){input.focus();},50);
+}
+
 var _nearestLat=null,_nearestLon=null,_nearestAttempt=0,_nearestExclude=[];
-
-function findNearest(){
-  if(!navigator.geolocation){alert('Location access is not available in your browser.');return;}
-  if(_nearestAttempt===0){
-    var lbl=document.getElementById('nb-lbl');
-    lbl.innerHTML='<span class="spin">&#9675;</span> Detecting your location...';
-    navigator.geolocation.getCurrentPosition(function(pos){
-      _nearestLat=pos.coords.latitude;
-      _nearestLon=pos.coords.longitude;
-      runNearestSearch();
-    },function(){
-      lbl.textContent='Find my nearest iconic route';
-      alert('Location access denied - please enable permissions and try again.');
-    });
-  } else {
-    runNearestSearch();
-  }
-}
-
-function runNearestSearch(){
-  var lbl=document.getElementById('nb-lbl');
-  _nearestAttempt++;
-  var radii=['within 50km','within 150km','within 500km','anywhere in the same country as','anywhere in the world near'];
-  var radius=radii[Math.min(_nearestAttempt-1,radii.length-1)];
-  var excludeText=_nearestExclude.length>0?' Do NOT suggest any of these already shown: '+_nearestExclude.join(', '):'';
-  lbl.innerHTML='<span class="spin">&#9675;</span> Scanning '+radius+' you...';
-  showLoading('Scanning '+radius+' you...');
-  var query=_nearestLat.toFixed(3)+', '+_nearestLon.toFixed(3)+' radius:'+radius+excludeText;
-  fetchRoute(query).then(function(route){
-    _nearestExclude.push(route.source);
-    showRoute(99,'Found '+radius+' you: '+route.name+' ('+route.source+')');
-    lbl.innerHTML='&#10006; Too far away. Find me another.';
-  }).catch(function(){
-    var best=ROUTES[0],bestD=Infinity;
-    ROUTES.forEach(function(r){var d=haversine(_nearestLat,_nearestLon,r.lat,r.lon);if(d<bestD){bestD=d;best=r;}});
-    showRoute(best.id,'Nearest featured route to you: '+best.name);
-    lbl.innerHTML='&#10006; Too far away. Find me another.';
-  }).finally(function(){hideLoading();});
-}
 
 async function doSearch(){
   var q=document.getElementById('q').value.trim();
   if(!q)return;
+
+  if(_searchMode==='location'){
+    showLoading('Searching for iconic runs near '+q);
+    try{await fetchRoute('LOCATION_SEARCH: '+q);showRoute(99);}
+    catch(err){alert(err.message||'Could not find a verified route for that location. Try a larger city or well-known area.');}
+    finally{hideLoading();}
+    return;
+  }
+
   var m=ROUTES.find(function(r){return r.name.toLowerCase().indexOf(q.toLowerCase())>=0||r.source.toLowerCase().indexOf(q.toLowerCase())>=0;});
   if(m){showRoute(m.id);return;}
   showLoading('Finding the route');
@@ -273,8 +267,9 @@ renderCards();
 (function(){
   var cv=document.getElementById('hero-canvas'),ctx=cv.getContext('2d');
   var LIME='#c8ff00',LIME_DIM='rgba(200,255,0,0.2)',LIME_FAINT='rgba(200,255,0,0.06)';
-  function resize(){var W=Math.min(cv.parentElement.clientWidth||340,340);cv.width=W;cv.height=Math.round(W*0.6);}
+  function resize(){var W=Math.min(cv.parentElement.clientWidth||260,260);cv.width=W;cv.height=Math.round(W*0.6);}
   resize();
+  var progress=0,pulse=0,loopTimer=null;
   window.addEventListener('resize',function(){resize();progress=0;});
   function pts(){
     var W=cv.width,H=cv.height,cx=0.5,cy=0.52,R=0.26,r=R*0.42,n=5,points=[];
@@ -282,8 +277,7 @@ renderCards();
       var angle=(i*Math.PI/n)-Math.PI/2,radius=i%2===0?R:r;
       points.push([(cx+Math.cos(angle)*radius*(H/W))*W,(cy+Math.sin(angle)*radius)*H]);
     }
-    points.push(points[0]);
-    return points;
+    points.push(points[0]);return points;
   }
   var LABELS=[{t:0.00,text:'START'},{t:0.20,text:'1.0 KM'},{t:0.40,text:'2.1 KM'},{t:0.60,text:'3.1 KM'},{t:0.80,text:'4.2 KM'},{t:1.00,text:'5.1 KM'}];
   function interpolate(points,t){
@@ -293,7 +287,6 @@ renderCards();
     return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];
   }
   function drawPath(points){ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);for(var i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);}
-  var progress=0,pulse=0,loopTimer=null;
   function draw(){
     var W=cv.width,H=cv.height;
     ctx.clearRect(0,0,W,H);
