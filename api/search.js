@@ -9,25 +9,43 @@ export default async function handler(req, res) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
 
-  const isLocationQuery = query.toLowerCase().includes('coordinates');
+  const coordMatch = query.match(/^(-?\d+\.\d+),\s*(-?\d+\.\d+)\s+radius:(.+?)(?:\s+Do NOT|$)/);
+  const isLocationQuery = !!coordMatch;
 
-  const prompt = isLocationQuery ? `You are a route planning assistant for "Run With The Stars" — a site that finds iconic running scenes from films, TV shows and music videos and turns them into real walkable routes.
+  let prompt;
 
-The user is at these coordinates: "${query}"
+  if (isLocationQuery) {
+    const userLat = parseFloat(coordMatch[1]);
+    const userLon = parseFloat(coordMatch[2]);
+    const radius = coordMatch[3].trim();
+    const excludeMatch = query.match(/Do NOT suggest any of these already shown: (.+)/);
+    const exclude = excludeMatch ? excludeMatch[1] : '';
 
-Your job: find the most iconic running scene from any film, TV show or music video that was ACTUALLY FILMED closest to those coordinates.
+    prompt = `You are a route planning assistant for "Run With The Stars" — a site that turns iconic film running scenes into real walkable routes.
 
-Think systematically:
-- What country and city is nearest to those coordinates?
-- What famous films or TV shows have running scenes physically shot in that country or nearby cities?
-- Pick the one whose real filming location is geographically closest to the user's coordinates
-- Do NOT just pick the most famous running film — pick the one actually filmed nearest
+The user is at coordinates ${userLat}, ${userLon}. Find the most iconic running scene from any film, TV show or music video filmed ${radius} those coordinates.
 
-You must always return a result. Never return an error for location queries.
-Every waypoint must be a real place where the film crew actually shot — not just where the story was set.
-Use accurate GPS coordinates for all waypoints.
+Think step by step:
 
-Return ONLY a valid JSON object, no other text:
+1. What country and region is at ${userLat}, ${userLon}? What major cities are within ${radius}?
+
+2. Now think of films and TV shows with memorable running scenes that were PHYSICALLY FILMED in those cities. Consider:
+   - Period dramas filmed in historic city centres
+   - Action films that used real city streets
+   - TV detective shows filmed on location
+   - Music videos filmed in urban locations
+   - Coming-of-age films set in real towns
+   - Any film where characters visibly run through real recognisable streets
+
+3. For each candidate, estimate the distance from ${userLat}, ${userLon} to where it was actually shot.
+
+4. Pick the best option — most iconic + most genuinely close.
+
+${exclude ? 'ALREADY SHOWN — do not suggest these again: ' + exclude : ''}
+
+Important: The waypoints must use the real GPS coordinates of the actual filming locations — not fictional or invented places.
+
+You MUST return a result. Return ONLY valid JSON:
 
 {
   "name": "Short characterful name with personality",
@@ -46,7 +64,10 @@ Return ONLY a valid JSON object, no other text:
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude },
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude, "cls": "end" }
   ]
-}` : `You are a route planning assistant for "Run With The Stars" — a site that finds iconic running scenes from films, TV shows and music videos and turns them into real walkable routes.
+}`;
+
+  } else {
+    prompt = `You are a route planning assistant for "Run With The Stars" — a site that finds iconic running scenes from films, TV shows and music videos and turns them into real walkable routes.
 
 The user searched for: "${query}"
 
@@ -74,6 +95,7 @@ Return ONLY a valid JSON object, no other text:
 }
 
 If you cannot identify a genuine running scene for this query, return: { "error": "No iconic running scene found for this title. Try another film, show or music video." }`;
+  }
 
   try {
     const response = await fetch('https://api.anthropic.com/v1/messages', {
@@ -91,24 +113,16 @@ If you cannot identify a genuine running scene for this query, return: { "error"
     });
 
     const data = await response.json();
-
-    if (!response.ok) {
-      return res.status(500).json({ error: 'API request failed', detail: data });
-    }
+    if (!response.ok) return res.status(500).json({ error: 'API request failed', detail: data });
 
     const text = data.content[0].text.trim();
     const clean = text.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
 
     let route;
-    try {
-      route = JSON.parse(clean);
-    } catch (e) {
-      return res.status(500).json({ error: 'Failed to parse route data', raw: clean });
-    }
+    try { route = JSON.parse(clean); }
+    catch (e) { return res.status(500).json({ error: 'Failed to parse route data', raw: clean }); }
 
-    if (route.error) {
-      return res.status(404).json({ error: route.error });
-    }
+    if (route.error) return res.status(404).json({ error: route.error });
 
     return res.status(200).json({ route });
 
