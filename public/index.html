@@ -29,7 +29,6 @@ body {
   position: relative;
 }
 
-/* ── NIGHT BACKGROUND ── */
 #night-bg {
   position: fixed;
   inset: 0;
@@ -37,14 +36,12 @@ body {
   pointer-events: none;
 }
 
-/* ── ALL CONTENT ── */
 .site {
   position: relative;
   z-index: 1;
   min-height: 100vh;
 }
 
-/* ── HERO ── */
 .hero {
   display: flex;
   flex-direction: column;
@@ -53,19 +50,14 @@ body {
   text-align: center;
 }
 
-/* ── RUNNER SVG WRAPPER ── */
 .runner-outer {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 32px;
 }
-.runner-svg {
-  width: 300px;
-  height: auto;
-}
+.runner-svg { width: 300px; height: auto; }
 
-/* ── HEADLINE ── */
 h1 {
   font-size: clamp(28px, 5.5vw, 64px);
   font-weight: 800;
@@ -77,7 +69,6 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* ── SUB-COPY ── */
 .sub {
   font-size: clamp(15px, 2vw, 20px);
   font-weight: 400;
@@ -87,7 +78,6 @@ h1 {
   margin-bottom: 36px;
 }
 
-/* ── SEARCH ── */
 .search-wrap {
   width: 100%;
   max-width: 480px;
@@ -148,7 +138,6 @@ h1 {
 }
 .nearest-btn:hover { background: rgba(200,255,0,0.14); border-color: var(--lime); }
 
-/* ── ROUTES SECTION ── */
 .routes-section {
   padding: 52px 0 56px;
   text-align: center;
@@ -162,7 +151,6 @@ h1 {
   margin-bottom: 32px;
 }
 
-/* ── FOOTPRINT CARDS ── */
 .fp-track {
   display: flex;
   gap: 20px;
@@ -183,13 +171,7 @@ h1 {
 }
 .fp-card:hover { transform: translateY(-5px); }
 .fp-card.active .fp-outline { stroke: var(--lime); filter: drop-shadow(0 0 8px rgba(200,255,0,0.5)); }
-
-.fp-outline {
-  stroke: var(--lime-mid);
-  fill: none;
-  stroke-width: 1.5;
-  transition: stroke 0.2s;
-}
+.fp-outline { stroke: var(--lime-mid); fill: none; stroke-width: 1.5; transition: stroke 0.2s; }
 .fp-card:hover .fp-outline { stroke: var(--lime); }
 
 .fp-inner {
@@ -203,122 +185,31 @@ h1 {
   text-align: center;
   pointer-events: none;
 }
-.fp-name {
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--lime);
-  line-height: 1.15;
-  margin-bottom: 5px;
-}
-.fp-source {
-  font-size: 9px;
-  font-weight: 300;
-  font-style: italic;
-  color: var(--lime-mid);
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-.fp-meta {
-  font-size: 9px;
-  font-weight: 700;
-  color: var(--lime-low);
-  letter-spacing: 0.5px;
-  line-height: 1.6;
-}
+.fp-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--lime); line-height: 1.15; margin-bottom: 5px; }
+.fp-source { font-size: 9px; font-weight: 300; font-style: italic; color: var(--lime-mid); margin-bottom: 8px; line-height: 1.3; }
+.fp-meta { font-size: 9px; font-weight: 700; color: var(--lime-low); letter-spacing: 0.5px; line-height: 1.6; }
 
-/* ── ROUTE DETAIL ── */
-#detail {
-  display: none;
-  max-width: 580px;
-  margin: 0 auto;
-  padding: 0 24px 80px;
-}
+#detail { display: none; max-width: 580px; margin: 0 auto; padding: 0 24px 80px; }
 #detail.visible { display: block; }
 
-.found-msg {
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--lime-low);
-  letter-spacing: 1px;
-  text-align: center;
-  margin-bottom: 20px;
-  padding: 10px;
-  border: 1px solid var(--lime-faint);
-}
+.found-msg { font-size: 11px; font-weight: 400; color: var(--lime-low); letter-spacing: 1px; text-align: center; margin-bottom: 20px; padding: 10px; border: 1px solid var(--lime-faint); }
 
-.detail-box {
-  border: 1.5px solid var(--lime-low);
-  padding: 28px;
-  background: rgba(0,0,0,0.45);
-}
+.detail-box { border: 1.5px solid var(--lime-low); padding: 28px; background: rgba(0,0,0,0.45); }
 
-.d-tag {
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--lime-low);
-  margin-bottom: 6px;
-}
-.d-name {
-  font-size: clamp(26px, 4vw, 40px);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--lime);
-  line-height: 1;
-  margin-bottom: 20px;
-}
+.d-tag { font-size: 10px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; color: var(--lime-low); margin-bottom: 6px; }
+.d-name { font-size: clamp(26px, 4vw, 40px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--lime); line-height: 1; margin-bottom: 20px; }
 
-.d-stats {
-  display: flex;
-  gap: 0;
-  border: 1px solid var(--lime-faint);
-  margin-bottom: 24px;
-}
-.d-stat {
-  flex: 1;
-  text-align: center;
-  padding: 12px 8px;
-  border-right: 1px solid var(--lime-faint);
-}
+.d-stats { display: flex; gap: 0; border: 1px solid var(--lime-faint); margin-bottom: 24px; }
+.d-stat { flex: 1; text-align: center; padding: 12px 8px; border-right: 1px solid var(--lime-faint); }
 .d-stat:last-child { border-right: none; }
-.d-stat-val {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--lime);
-  letter-spacing: -0.5px;
-  line-height: 1;
-}
-.d-stat-lbl {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--lime-low);
-  margin-top: 3px;
-}
+.d-stat-val { font-size: 22px; font-weight: 800; color: var(--lime); letter-spacing: -0.5px; line-height: 1; }
+.d-stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--lime-low); margin-top: 3px; }
 
-.d-wps-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--lime-low);
-  margin-bottom: 14px;
-}
-
+.d-wps-label { font-size: 9px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--lime-low); margin-bottom: 14px; }
 .d-wps { display: flex; flex-direction: column; margin-bottom: 24px; }
 .d-wp { display: flex; }
 .d-wp-col { display: flex; flex-direction: column; align-items: center; width: 20px; flex-shrink: 0; }
-.d-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  border: 1.5px solid var(--lime-low);
-  background: transparent;
-  margin-top: 4px; flex-shrink: 0;
-}
+.d-dot { width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--lime-low); background: transparent; margin-top: 4px; flex-shrink: 0; }
 .d-dot.start { background: var(--lime); border-color: var(--lime); }
 .d-dot.end { border-color: var(--lime); }
 .d-line { width: 1px; flex: 1; min-height: 14px; background: var(--lime-faint); }
@@ -326,69 +217,37 @@ h1 {
 .d-wp-name { font-size: 13px; font-weight: 700; color: var(--lime); line-height: 1.2; }
 .d-wp-desc { font-size: 11px; font-weight: 300; font-style: italic; color: var(--lime-low); margin-top: 2px; }
 
-.maps-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--lime);
-  color: #000;
-  text-decoration: none;
-  padding: 16px 20px;
-  margin-bottom: 8px;
-  transition: opacity 0.15s;
-}
+.maps-cta { display: flex; align-items: center; justify-content: space-between; background: var(--lime); color: #000; text-decoration: none; padding: 16px 20px; margin-bottom: 8px; transition: opacity 0.15s; }
 .maps-cta:hover { opacity: 0.88; }
 .maps-cta-label { font-size: 17px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #000; }
 .maps-cta-sub { font-size: 10px; font-weight: 400; color: rgba(0,0,0,0.5); margin-top: 1px; }
 .maps-cta-arrow { font-size: 20px; color: rgba(0,0,0,0.45); }
 
-.copy-cta {
-  width: 100%;
-  background: transparent;
-  border: 1.5px solid var(--lime-low);
-  color: var(--lime-low);
-  padding: 13px 20px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: border-color 0.15s, color 0.15s;
-}
+.copy-cta { width: 100%; background: transparent; border: 1.5px solid var(--lime-low); color: var(--lime-low); padding: 13px 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
 .copy-cta:hover { border-color: var(--lime); color: var(--lime); }
 
-/* ── TOAST ── */
-#toast {
-  position: fixed; bottom: 24px; left: 50%;
-  transform: translateX(-50%);
-  background: var(--lime); color: #000;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 12px; font-weight: 800;
-  letter-spacing: 3px; text-transform: uppercase;
-  padding: 11px 28px;
-  opacity: 0; transition: opacity 0.2s;
-  pointer-events: none; z-index: 9999;
-  white-space: nowrap;
+#loading-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0,0,0,0.85);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
+#loading-overlay.show { display: flex; }
+.loading-star { font-size: 48px; animation: spin 1.4s linear infinite; color: var(--lime); line-height: 1; }
+.loading-text { font-size: 22px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--lime); }
+.loading-sub { font-size: 13px; font-weight: 300; color: var(--lime-low); letter-spacing: 2px; }
+
+#toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--lime); color: #000; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; padding: 11px 28px; opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 9999; white-space: nowrap; }
 #toast.show { opacity: 1; }
 
-/* ── FOOTER ── */
-footer {
-  text-align: center;
-  padding: 24px;
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--lime-faint);
-}
+footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--lime-faint); }
 
-/* ── FADE IN ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 .fu  { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
 .fu1 { animation-delay: 0.05s; }
 .fu2 { animation-delay: 0.18s; }
@@ -402,25 +261,21 @@ footer {
 </head>
 <body>
 
-<!-- ══ NIGHT BACKGROUND CANVAS ══ -->
+<div id="loading-overlay">
+  <div class="loading-star">★</div>
+  <div class="loading-text">Just limbering up…</div>
+  <div class="loading-sub">Finding the route</div>
+</div>
+
 <canvas id="night-bg"></canvas>
 
 <div class="site">
-
-  <!-- ══ HERO ══ -->
   <div class="hero">
-
-    <!-- HERO VISUAL — animated GPS route trace -->
     <div class="runner-outer fu fu1" style="width:100%;max-width:700px;margin-bottom:32px;">
       <canvas id="hero-canvas" style="display:block;width:100%;"></canvas>
     </div>
-
     <h1 class="fu fu2">Run the route from your favourite film, TV show or music video.</h1>
-
-    <p class="sub fu fu3">
-      Every iconic run from pop culture has a real location. Find it, get the Google Maps route, and run, Forest, run!
-    </p>
-
+    <p class="sub fu fu3">Every iconic run from pop culture has a real location. Find it, get the Google Maps route, and run, Forest, run!</p>
     <div class="search-wrap fu fu4">
       <div class="search-row">
         <input class="search-input" id="q" placeholder="Enter a film, TV show, or music video…"/>
@@ -430,19 +285,14 @@ footer {
         <span id="nb-lbl">Find my nearest iconic route</span>
       </button>
     </div>
-
   </div>
 
-  <!-- ══ FEATURED ROUTES ══ -->
   <div class="routes-section fu fu5">
     <div class="routes-label">Featured Routes</div>
     <div class="fp-track" id="fp-track"></div>
   </div>
 
-  <!-- ══ ROUTE DETAIL ══ -->
-  <div id="detail">
-    <div id="detail-inner"></div>
-  </div>
+  <div id="detail"><div id="detail-inner"></div></div>
 
   <footer>Run With The Stars &nbsp;·&nbsp; Iconic scenes. Real routes. Your legs.</footer>
 </div>
@@ -450,537 +300,179 @@ footer {
 <div id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════
-// NIGHT BACKGROUND
-// ══════════════════════════════════════════
 (function () {
   const cv = document.getElementById('night-bg');
   const cx = cv.getContext('2d');
-
   function paint() {
-    const W = cv.width  = window.innerWidth;
+    const W = cv.width = window.innerWidth;
     const H = cv.height = window.innerHeight;
-
-    // Sky gradient — deep night, not flat black
-    const sky = cx.createLinearGradient(0, 0, 0, H);
-    sky.addColorStop(0,    '#050608');
-    sky.addColorStop(0.45, '#07090e');
-    sky.addColorStop(0.72, '#0a0c0a');
-    sky.addColorStop(1,    '#060806');
-    cx.fillStyle = sky;
-    cx.fillRect(0, 0, W, H);
-
-    // Faint stars — sparse dots
-    cx.fillStyle = 'rgba(255,255,255,0.55)';
-    const rng = (s) => { let x=s; return ()=>{ x=Math.sin(x*127.1+311.7)*43758.5; return x-Math.floor(x); }; };
-    const r = rng(42);
-    for (let i = 0; i < 180; i++) {
-      const sx = r() * W, sy = r() * H * 0.65;
-      const sr = r() < 0.07 ? 1.2 : 0.5;
-      cx.globalAlpha = 0.15 + r() * 0.55;
-      cx.beginPath(); cx.arc(sx, sy, sr, 0, Math.PI*2); cx.fill();
-    }
-    cx.globalAlpha = 1;
-
-    // Ground — very dark, slightly warm
-    const gnd = cx.createLinearGradient(0, H*0.74, 0, H);
-    gnd.addColorStop(0, 'rgba(12,14,10,0.9)');
-    gnd.addColorStop(1, 'rgba(6,8,5,1)');
-    cx.fillStyle = gnd;
-    cx.fillRect(0, H*0.74, W, H*0.26);
-
-    // Horizon line — faint lime suggestion
-    cx.strokeStyle = 'rgba(200,255,0,0.04)';
-    cx.lineWidth = 1;
-    cx.beginPath(); cx.moveTo(0, H*0.74); cx.lineTo(W, H*0.74); cx.stroke();
-
-    // Vignette
-    const vig = cx.createRadialGradient(W/2, H/2, H*0.08, W/2, H/2, H*0.82);
-    vig.addColorStop(0, 'transparent');
-    vig.addColorStop(1, 'rgba(0,0,0,0.78)');
-    cx.fillStyle = vig;
-    cx.fillRect(0, 0, W, H);
-
-    // Grain — subtle film texture
-    const id = cx.createImageData(W, H);
-    const d  = id.data;
-    const rg = rng(17);
-    for (let i = 0; i < d.length; i += 4) {
-      const v = (rg() * 32) - 16;
-      d[i]=d[i+1]=d[i+2] = 128+v; d[i+3] = Math.floor(rg()*16);
-    }
-    cx.putImageData(id, 0, 0);
+    const sky = cx.createLinearGradient(0,0,0,H);
+    sky.addColorStop(0,'#050608'); sky.addColorStop(0.45,'#07090e');
+    sky.addColorStop(0.72,'#0a0c0a'); sky.addColorStop(1,'#060806');
+    cx.fillStyle=sky; cx.fillRect(0,0,W,H);
+    const rng=(s)=>{let x=s;return()=>{x=Math.sin(x*127.1+311.7)*43758.5;return x-Math.floor(x);};};
+    const r=rng(42);
+    for(let i=0;i<180;i++){const sx=r()*W,sy=r()*H*0.65,sr=r()<0.07?1.2:0.5;cx.globalAlpha=0.15+r()*0.55;cx.beginPath();cx.arc(sx,sy,sr,0,Math.PI*2);cx.fill();}
+    cx.globalAlpha=1;
+    const gnd=cx.createLinearGradient(0,H*0.74,0,H);
+    gnd.addColorStop(0,'rgba(12,14,10,0.9)'); gnd.addColorStop(1,'rgba(6,8,5,1)');
+    cx.fillStyle=gnd; cx.fillRect(0,H*0.74,W,H*0.26);
+    cx.strokeStyle='rgba(200,255,0,0.04)'; cx.lineWidth=1;
+    cx.beginPath(); cx.moveTo(0,H*0.74); cx.lineTo(W,H*0.74); cx.stroke();
+    const vig=cx.createRadialGradient(W/2,H/2,H*0.08,W/2,H/2,H*0.82);
+    vig.addColorStop(0,'transparent'); vig.addColorStop(1,'rgba(0,0,0,0.78)');
+    cx.fillStyle=vig; cx.fillRect(0,0,W,H);
+    const id=cx.createImageData(W,H),d=id.data,rg=rng(17);
+    for(let i=0;i<d.length;i+=4){const v=rg()*32-16;d[i]=d[i+1]=d[i+2]=128+v;d[i+3]=Math.floor(rg()*16);}
+    cx.putImageData(id,0,0);
   }
-
   paint();
-  window.addEventListener('resize', () => { clearTimeout(window._rp); window._rp = setTimeout(paint, 120); });
+  window.addEventListener('resize',()=>{clearTimeout(window._rp);window._rp=setTimeout(paint,120);});
 })();
 
-// ══════════════════════════════════════════
-// ROUTES DATA
-// ══════════════════════════════════════════
 const ROUTES = [
-  {
-    id:0, name:"Rocky's Training Run", source:"Rocky (1976)",
-    loc:"Philadelphia, PA", dist:"5.1KM", elev:"62M", time:"28 MIN",
-    lat:39.9656, lon:-75.1810,
-    note:"Run at dawn. The 72 museum steps are steeper than they look on screen.",
-    waypoints:[
-      {n:"Eastern State Penitentiary", d:"Start at dawn.",                lat:39.9753,lon:-75.1724,cls:"start"},
-      {n:"Fairmount Ave",             d:"West through the neighbourhood.", lat:39.9700,lon:-75.1770},
-      {n:"Kelly Drive",               d:"South along the Schuylkill River.",lat:39.9680,lon:-75.1800},
-      {n:"Eakins Oval",               d:"Past the fountain.",              lat:39.9660,lon:-75.1810},
-      {n:"Philadelphia Museum of Art",d:"Climb the 72 steps. Arms up.",    lat:39.9656,lon:-75.1810,cls:"end"},
-    ]
-  },
-  {
-    id:1, name:"Phoebe Runs Weird", source:"Friends (1994–2004)",
-    loc:"Central Park, New York", dist:"5.2KM", elev:"28M", time:"29 MIN",
-    lat:40.7812, lon:-73.9665,
-    note:"Arms out. No technique. Full Phoebe energy. Non-negotiable.",
-    waypoints:[
-      {n:"Tavern on the Green",d:"Start. Arms out immediately.",   lat:40.7767,lon:-73.9810,cls:"start"},
-      {n:"The Mall",            d:"South under the elm canopy.",   lat:40.7718,lon:-73.9734},
-      {n:"Bethesda Fountain",   d:"The centrepiece. Keep running.",lat:40.7734,lon:-73.9712},
-      {n:"The Reservoir",       d:"Lap the Jackie Kennedy path.",  lat:40.7856,lon:-73.9640},
-      {n:"Tavern on the Green", d:"Full loop. You made it.",       lat:40.7767,lon:-73.9810,cls:"end"},
-    ]
-  },
-  {
-    id:2, name:"Run, Forest, Run!", source:"Forrest Gump (1994)",
-    loc:"Savannah, GA", dist:"5.0KM", elev:"14M", time:"28 MIN",
-    lat:32.0758, lon:-81.0932,
-    note:"The bench is in the museum now. But the square is unchanged. Mama would approve.",
-    waypoints:[
-      {n:"Chippewa Square",       d:"Where Forrest told his story.",     lat:32.0758,lon:-81.0932,cls:"start"},
-      {n:"Forsyth Park",          d:"South to the grand fountain.",      lat:32.0680,lon:-81.0962},
-      {n:"Bull Street South",     d:"Down the oak-lined boulevard.",     lat:32.0640,lon:-81.0950},
-      {n:"Savannah History Museum",d:"Where the real bench lives.",      lat:32.0810,lon:-81.0990},
-      {n:"Chippewa Square",       d:"Back to the start. Life is short.", lat:32.0758,lon:-81.0932,cls:"end"},
-    ]
-  },
-  {
-    id:3, name:"Choose Running", source:"Trainspotting (1996)",
-    loc:"Edinburgh, Scotland", dist:"4.8KM", elev:"38M", time:"26 MIN",
-    lat:55.9524, lon:-3.1883,
-    note:"Lust for Life on full volume. Choose this. Choose running.",
-    waypoints:[
-      {n:"107–109 Princes Street",          d:"Start outside the former John Menzies.",lat:55.9524,lon:-3.1883,cls:"start"},
-      {n:"Hanover Street",                  d:"East past the Royal Scottish Academy.",  lat:55.9516,lon:-3.1942},
-      {n:"Leith Street Steps",              d:"Down to Calton Road.",                  lat:55.9543,lon:-3.1823},
-      {n:"Calton Road under Regent Bridge", d:"This is where the car hit him.",         lat:55.9530,lon:-3.1798},
-      {n:"Edinburgh Waverley Station",      d:"Finish beneath the arches.",             lat:55.9521,lon:-3.1891,cls:"end"},
-    ]
-  },
-  {
-    id:4, name:"Golden Hour", source:"Harry Styles — Golden (2020)",
-    loc:"Amalfi Coast, Italy", dist:"5.1KM", elev:"210M", time:"35 MIN",
-    lat:40.6333, lon:14.6333,
-    note:"Trail shoes required. ~400 stone steps. Time it for actual golden hour.",
-    waypoints:[
-      {n:"Maiori Lungomare",             d:"Start at the seafront.",            lat:40.6330,lon:14.6430,cls:"start"},
-      {n:"SS163 Tunnels",                d:"Sprint through the coastal tunnels.",lat:40.6300,lon:14.6380},
-      {n:"Collegiata di Santa Maria",    d:"Up Via Vena stairs.",               lat:40.6340,lon:14.6400},
-      {n:"Sentiero dei Limoni",          d:"Trail through the lemon groves.",   lat:40.6390,lon:14.6350},
-      {n:"Minori Beach",                 d:"Finish at the Tyrrhenian Sea.",     lat:40.6280,lon:14.6230,cls:"end"},
-    ]
-  },
+  { id:0, name:"Rocky's Training Run", source:"Rocky (1976)", loc:"Philadelphia, PA", dist:"5.1KM", elev:"62M", time:"28 MIN", lat:39.9656, lon:-75.1810, note:"Run at dawn. The 72 museum steps are steeper than they look on screen.", waypoints:[{n:"Eastern State Penitentiary",d:"Start at dawn.",lat:39.9753,lon:-75.1724,cls:"start"},{n:"Fairmount Ave",d:"West through the neighbourhood.",lat:39.9700,lon:-75.1770},{n:"Kelly Drive",d:"South along the Schuylkill River.",lat:39.9680,lon:-75.1800},{n:"Eakins Oval",d:"Past the fountain.",lat:39.9660,lon:-75.1810},{n:"Philadelphia Museum of Art",d:"Climb the 72 steps. Arms up.",lat:39.9656,lon:-75.1810,cls:"end"}] },
+  { id:1, name:"Phoebe Runs Weird", source:"Friends (1994–2004)", loc:"Central Park, New York", dist:"5.2KM", elev:"28M", time:"29 MIN", lat:40.7812, lon:-73.9665, note:"Arms out. No technique. Full Phoebe energy. Non-negotiable.", waypoints:[{n:"Tavern on the Green",d:"Start. Arms out immediately.",lat:40.7767,lon:-73.9810,cls:"start"},{n:"The Mall",d:"South under the elm canopy.",lat:40.7718,lon:-73.9734},{n:"Bethesda Fountain",d:"The centrepiece. Keep running.",lat:40.7734,lon:-73.9712},{n:"The Reservoir",d:"Lap the Jackie Kennedy path.",lat:40.7856,lon:-73.9640},{n:"Tavern on the Green",d:"Full loop. You made it.",lat:40.7767,lon:-73.9810,cls:"end"}] },
+  { id:2, name:"Run, Forest, Run!", source:"Forrest Gump (1994)", loc:"Savannah, GA", dist:"5.0KM", elev:"14M", time:"28 MIN", lat:32.0758, lon:-81.0932, note:"The bench is in the museum now. But the square is unchanged. Mama would approve.", waypoints:[{n:"Chippewa Square",d:"Where Forrest told his story.",lat:32.0758,lon:-81.0932,cls:"start"},{n:"Forsyth Park",d:"South to the grand fountain.",lat:32.0680,lon:-81.0962},{n:"Bull Street South",d:"Down the oak-lined boulevard.",lat:32.0640,lon:-81.0950},{n:"Savannah History Museum",d:"Where the real bench lives.",lat:32.0810,lon:-81.0990},{n:"Chippewa Square",d:"Back to the start. Life is short.",lat:32.0758,lon:-81.0932,cls:"end"}] },
+  { id:3, name:"Choose Running", source:"Trainspotting (1996)", loc:"Edinburgh, Scotland", dist:"4.8KM", elev:"38M", time:"26 MIN", lat:55.9524, lon:-3.1883, note:"Lust for Life on full volume. Choose this. Choose running.", waypoints:[{n:"107–109 Princes Street",d:"Start outside the former John Menzies.",lat:55.9524,lon:-3.1883,cls:"start"},{n:"Hanover Street",d:"East past the Royal Scottish Academy.",lat:55.9516,lon:-3.1942},{n:"Leith Street Steps",d:"Down to Calton Road.",lat:55.9543,lon:-3.1823},{n:"Calton Road under Regent Bridge",d:"This is where the car hit him.",lat:55.9530,lon:-3.1798},{n:"Edinburgh Waverley Station",d:"Finish beneath the arches.",lat:55.9521,lon:-3.1891,cls:"end"}] },
+  { id:4, name:"Golden Hour", source:"Harry Styles — Golden (2020)", loc:"Amalfi Coast, Italy", dist:"5.1KM", elev:"210M", time:"35 MIN", lat:40.6333, lon:14.6333, note:"Trail shoes required. ~400 stone steps. Time it for actual golden hour.", waypoints:[{n:"Maiori Lungomare",d:"Start at the seafront.",lat:40.6330,lon:14.6430,cls:"start"},{n:"SS163 Tunnels",d:"Sprint through the coastal tunnels.",lat:40.6300,lon:14.6380},{n:"Collegiata di Santa Maria",d:"Up Via Vena stairs.",lat:40.6340,lon:14.6400},{n:"Sentiero dei Limoni",d:"Trail through the lemon groves.",lat:40.6390,lon:14.6350},{n:"Minori Beach",d:"Finish at the Tyrrhenian Sea.",lat:40.6280,lon:14.6230,cls:"end"}] },
 ];
 
-// ══════════════════════════════════════════
-// GOOGLE MAPS URL
-// ══════════════════════════════════════════
 function buildMapsURL(route) {
-  const w = route.waypoints;
-  const origin = `${w[0].lat},${w[0].lon}`;
-  const dest   = `${w[w.length-1].lat},${w[w.length-1].lon}`;
-  const mid    = w.slice(1,-1).map(p=>`${p.lat},${p.lon}`).join('|');
+  const w=route.waypoints, origin=`${w[0].lat},${w[0].lon}`, dest=`${w[w.length-1].lat},${w[w.length-1].lon}`;
+  const mid=w.slice(1,-1).map(p=>`${p.lat},${p.lon}`).join('|');
   return `https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=${origin}&destination=${dest}${mid?'&waypoints='+encodeURIComponent(mid):''}`;
 }
 
-// ══════════════════════════════════════════
-// FOOTPRINT SVG
-// ══════════════════════════════════════════
 function footprintSVG(active) {
   const stroke = active ? '#c8ff00' : 'rgba(200,255,0,0.45)';
-  return `<svg viewBox="0 0 110 200" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:200px;display:block;">
-    <!-- Sole -->
-    <path class="fp-outline" d="
-      M 55 192
-      C 32 192 18 174 16 154
-      C 14 136 20 118 22 100
-      C 24 82 20 66 22 50
-      C 24 34 32 18 46 10
-      C 52 7 60 6 66 9
-      C 76 14 80 28 80 42
-      C 80 56 74 68 74 82
-      C 74 96 80 112 82 130
-      C 84 150 90 168 86 180
-      C 82 192 68 194 55 192 Z
-    " stroke="${stroke}" fill="none" stroke-width="1.5"/>
-    <!-- Big toe -->
-    <ellipse class="fp-outline" cx="44" cy="7"  rx="9"  ry="11" stroke="${stroke}" fill="none" stroke-width="1.5"/>
-    <!-- Second toe -->
-    <ellipse class="fp-outline" cx="58" cy="4"  rx="7"  ry="9"  stroke="${stroke}" fill="none" stroke-width="1.5"/>
-    <!-- Third toe -->
-    <ellipse class="fp-outline" cx="70" cy="6"  rx="6"  ry="8"  stroke="${stroke}" fill="none" stroke-width="1.5"/>
-    <!-- Fourth toe -->
-    <ellipse class="fp-outline" cx="79" cy="13" rx="5"  ry="7"  stroke="${stroke}" fill="none" stroke-width="1.5"/>
-    <!-- Little toe -->
-    <ellipse class="fp-outline" cx="86" cy="23" rx="4.5" ry="6" stroke="${stroke}" fill="none" stroke-width="1.5"/>
-  </svg>`;
+  return `<svg viewBox="0 0 110 200" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:200px;display:block;"><path d="M 55 192 C 32 192 18 174 16 154 C 14 136 20 118 22 100 C 24 82 20 66 22 50 C 24 34 32 18 46 10 C 52 7 60 6 66 9 C 76 14 80 28 80 42 C 80 56 74 68 74 82 C 74 96 80 112 82 130 C 84 150 90 168 86 180 C 82 192 68 194 55 192 Z" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="44" cy="7" rx="9" ry="11" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="58" cy="4" rx="7" ry="9" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="70" cy="6" rx="6" ry="8" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="79" cy="13" rx="5" ry="7" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="86" cy="23" rx="4.5" ry="6" stroke="${stroke}" fill="none" stroke-width="1.5"/></svg>`;
 }
 
-// ══════════════════════════════════════════
-// RENDER CARDS
-// ══════════════════════════════════════════
 function renderCards() {
-  document.getElementById('fp-track').innerHTML = ROUTES.map((r,i) => `
-    <div class="fp-card${''}" id="fp-${r.id}" onclick="showRoute(${r.id})" role="button" aria-label="${r.name}">
+  document.getElementById('fp-track').innerHTML = ROUTES.map(r => `
+    <div class="fp-card" id="fp-${r.id}" onclick="showRoute(${r.id})">
       ${footprintSVG(false)}
       <div class="fp-inner">
         <div class="fp-name">${r.name}</div>
         <div class="fp-source">${r.source}</div>
         <div class="fp-meta">${r.dist}<br>${r.time}<br>${r.loc.split(',')[0]}</div>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
 
-// ══════════════════════════════════════════
-// SHOW ROUTE DETAIL
-// ══════════════════════════════════════════
 function showRoute(id, banner) {
-  const r = ROUTES.find(x=>x.id===id) || ROUTES[0];
+  const r = ROUTES.find(x=>x.id===id)||ROUTES[0];
   const url = buildMapsURL(r);
-
-  document.querySelectorAll('.fp-card').forEach(c => {
-    c.classList.remove('active');
-    c.querySelector('svg').innerHTML = footprintSVG(false).match(/<svg[^>]*>([\s\S]*)<\/svg>/)[1];
-  });
-  const fp = document.getElementById('fp-'+id);
-  if (fp) {
-    fp.classList.add('active');
-    fp.querySelector('svg').innerHTML = footprintSVG(true).match(/<svg[^>]*>([\s\S]*)<\/svg>/)[1];
-  }
-
-  const wpsHTML = r.waypoints.map((w,i,arr) => {
-    const last = i===arr.length-1;
-    return `<div class="d-wp">
-      <div class="d-wp-col">
-        <div class="d-dot ${w.cls||''} ${last&&!w.cls?'end':''}"></div>
-        ${!last?'<div class="d-line"></div>':''}
-      </div>
-      <div class="d-wp-text">
-        <div class="d-wp-name">${w.n}</div>
-        <div class="d-wp-desc">${w.d}</div>
-      </div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('detail-inner').innerHTML = `
-    ${banner?`<div class="found-msg">${banner}</div>`:''}
-    <div class="detail-box">
-      <div class="d-tag">${r.source}</div>
-      <div class="d-name">${r.name}</div>
-      <div class="d-stats">
-        <div class="d-stat"><div class="d-stat-val">${r.dist}</div><div class="d-stat-lbl">Distance</div></div>
-        <div class="d-stat"><div class="d-stat-val">${r.elev}</div><div class="d-stat-lbl">Elevation</div></div>
-        <div class="d-stat"><div class="d-stat-val">${r.time}</div><div class="d-stat-lbl">Est. time</div></div>
-      </div>
-      <div class="d-wps-label">Route Waypoints</div>
-      <div class="d-wps">${wpsHTML}</div>
-      <a class="maps-cta" href="${url}" target="_blank" rel="noopener">
-        <div>
-          <div class="maps-cta-label">Open in Google Maps</div>
-          <div class="maps-cta-sub">Walking · ${r.waypoints.length} stops · opens Maps app on mobile</div>
-        </div>
-        <div class="maps-cta-arrow">↗</div>
-      </a>
-      <button class="copy-cta" onclick="copyLink('${url}')">Copy Maps link</button>
-      ${r.note?`<p style="margin-top:16px;font-size:12px;font-weight:300;font-style:italic;color:rgba(200,255,0,0.4);line-height:1.65;">${r.note}</p>`:''}
-    </div>
-  `;
-
-  const sec = document.getElementById('detail');
+  document.querySelectorAll('.fp-card').forEach(c=>{c.classList.remove('active');const svg=c.querySelector('svg');if(svg)svg.outerHTML=footprintSVG(false);});
+  const fp=document.getElementById('fp-'+id);
+  if(fp){fp.classList.add('active');}
+  const wpsHTML=r.waypoints.map((w,i,arr)=>{const last=i===arr.length-1;return `<div class="d-wp"><div class="d-wp-col"><div class="d-dot ${w.cls||''} ${last&&!w.cls?'end':''}"></div>${!last?'<div class="d-line"></div>':''}</div><div class="d-wp-text"><div class="d-wp-name">${w.n}</div><div class="d-wp-desc">${w.d}</div></div></div>`;}).join('');
+  document.getElementById('detail-inner').innerHTML=`${banner?`<div class="found-msg">${banner}</div>`:''}<div class="detail-box"><div class="d-tag">${r.source}</div><div class="d-name">${r.name}</div><div class="d-stats"><div class="d-stat"><div class="d-stat-val">${r.dist}</div><div class="d-stat-lbl">Distance</div></div><div class="d-stat"><div class="d-stat-val">${r.elev}</div><div class="d-stat-lbl">Elevation</div></div><div class="d-stat"><div class="d-stat-val">${r.time}</div><div class="d-stat-lbl">Est. time</div></div></div><div class="d-wps-label">Route Waypoints</div><div class="d-wps">${wpsHTML}</div><a class="maps-cta" href="${url}" target="_blank" rel="noopener"><div><div class="maps-cta-label">Open in Google Maps</div><div class="maps-cta-sub">Walking · ${r.waypoints.length} stops · opens Maps app on mobile</div></div><div class="maps-cta-arrow">↗</div></a><button class="copy-cta" onclick="copyLink('${url}')">Copy Maps link</button>${r.note?`<p style="margin-top:16px;font-size:12px;font-weight:300;font-style:italic;color:rgba(200,255,0,0.4);line-height:1.65;">${r.note}</p>`:''}</div>`;
+  const sec=document.getElementById('detail');
   sec.classList.add('visible');
   setTimeout(()=>sec.scrollIntoView({behavior:'smooth',block:'start'}),80);
 }
 
-// ══════════════════════════════════════════
-// HAVERSINE + NEAREST
-// ══════════════════════════════════════════
-function haversine(lat1,lon1,lat2,lon2) {
-  const R=6371, dLat=(lat2-lat1)*Math.PI/180, dLon=(lon2-lon1)*Math.PI/180;
-  const a=Math.sin(dLat/2)**2+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
-  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+function showLoading(sub) {
+  document.querySelector('#loading-overlay .loading-sub').textContent = sub||'Finding the route';
+  document.getElementById('loading-overlay').classList.add('show');
+}
+function hideLoading() {
+  document.getElementById('loading-overlay').classList.remove('show');
+}
+
+async function fetchRoute(query) {
+  const res=await fetch('/api/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query})});
+  const data=await res.json();
+  if(!res.ok||data.error) throw new Error(data.error||'Could not find a route for that.');
+  const route={...data.route,id:99};
+  const existing=ROUTES.findIndex(r=>r.id===99);
+  if(existing>=0) ROUTES.splice(existing,1);
+  ROUTES.push(route);
+  return route;
 }
 
 function findNearest() {
-  if (!navigator.geolocation) return;
-  const btn=document.getElementById('nb'), lbl=document.getElementById('nb-lbl');
-  lbl.innerHTML='<span class="spin">◌</span> Locating…';
-  navigator.geolocation.getCurrentPosition(pos=>{
+  if(!navigator.geolocation){alert('Location access is not available in your browser.');return;}
+  const lbl=document.getElementById('nb-lbl');
+  lbl.innerHTML='<span class="spin">◌</span> Detecting your location…';
+  navigator.geolocation.getCurrentPosition(async pos=>{
     const {latitude:lat,longitude:lon}=pos.coords;
-    let best=null, bestD=Infinity;
-    ROUTES.forEach(r=>{const d=haversine(lat,lon,r.lat,r.lon);if(d<bestD){bestD=d;best=r;}});
-    const km=Math.round(bestD);
-    lbl.textContent='Found — '+best.name;
-    showRoute(best.id,`Nearest filming location to you: ${best.name} (${best.source}) — ${best.loc}, ${km.toLocaleString()} km away.`);
-  },()=>{lbl.textContent='Location denied — enable permissions and try again';});
+    let placeName=`${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+    try{const geo=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);const geoData=await geo.json();const addr=geoData.address;placeName=addr.city||addr.town||addr.village||addr.county||placeName;}catch(e){}
+    lbl.innerHTML='<span class="spin">◌</span> Searching near '+placeName+'…';
+    showLoading('Searching for iconic runs near '+placeName);
+    try{
+      const query=`Find me an iconic running scene from a film, TV show or music video that was actually filmed near ${placeName} (coordinates: ${lat.toFixed(3)}, ${lon.toFixed(3)}). The filming location must be genuinely close to these coordinates.`;
+      const route=await fetchRoute(query);
+      lbl.textContent='Found — '+route.name;
+      showRoute(99,`Nearest iconic route to you: ${route.name} (${route.source}) — ${route.loc}`);
+    }catch(err){
+      lbl.textContent='Find my nearest iconic route';
+      alert(err.message||'Could not find a nearby route. Try searching manually.');
+    }finally{hideLoading();}
+  },()=>{lbl.textContent='Find my nearest iconic route';alert('Location access denied — please enable permissions and try again.');});
 }
 
-// ══════════════════════════════════════════
-// SEARCH — calls live API
-// ══════════════════════════════════════════
 async function doSearch() {
-  const q = document.getElementById('q').value.trim();
-  if (!q) return;
-
-  // Check existing routes first
-  const m = ROUTES.find(r =>
-    r.name.toLowerCase().includes(q.toLowerCase()) ||
-    r.source.toLowerCase().includes(q.toLowerCase())
-  );
-  if (m) { showRoute(m.id); return; }
-
-  // Show loading state
-  const btn = document.querySelector('.search-btn');
-  const orig = btn.textContent;
-  btn.textContent = 'Finding…';
-  btn.disabled = true;
-
-  try {
-    const res = await fetch('/api/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query: q }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok || data.error) {
-      alert(data.error || 'Could not find a route for that. Try another film, show or music video.');
-      return;
-    }
-
-    // Give the generated route a temporary id
-    const route = { ...data.route, id: 99 };
-
-    // Add to routes array (replace any previous generated route)
-    const existing = ROUTES.findIndex(r => r.id === 99);
-    if (existing >= 0) ROUTES.splice(existing, 1);
-    ROUTES.push(route);
-
-    showRoute(99);
-
-  } catch (err) {
-    alert('Something went wrong. Please try again.');
-  } finally {
-    btn.textContent = orig;
-    btn.disabled = false;
-  }
+  const q=document.getElementById('q').value.trim(); if(!q)return;
+  const m=ROUTES.find(r=>r.name.toLowerCase().includes(q.toLowerCase())||r.source.toLowerCase().includes(q.toLowerCase()));
+  if(m){showRoute(m.id);return;}
+  showLoading('Finding the route');
+  try{await fetchRoute(q);showRoute(99);}
+  catch(err){alert(err.message||'Something went wrong. Please try again.');}
+  finally{hideLoading();}
 }
 document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
 
-// ══════════════════════════════════════════
-// COPY LINK
-// ══════════════════════════════════════════
 function copyLink(url){
-  navigator.clipboard.writeText(url).then(()=>{
-    const t=document.getElementById('toast');
-    t.textContent='Maps link copied';
-    t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'),2200);
-  });
+  navigator.clipboard.writeText(url).then(()=>{const t=document.getElementById('toast');t.textContent='Maps link copied';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);});
 }
 
 renderCards();
 
-// ══════════════════════════════════════════
-// HERO VISUAL — ANIMATED GPS ROUTE TRACE
-// ══════════════════════════════════════════
 (function(){
-  const cv = document.getElementById('hero-canvas');
-  const ctx = cv.getContext('2d');
-  const LIME = '#c8ff00';
-  const LIME_DIM = 'rgba(200,255,0,0.2)';
-  const LIME_FAINT = 'rgba(200,255,0,0.06)';
-
-  function resize() {
-    const W = Math.min(cv.parentElement.clientWidth || 340, 340);
-    cv.width  = W;
-    cv.height = Math.round(W * 0.6);
-  }
+  const cv=document.getElementById('hero-canvas');
+  const ctx=cv.getContext('2d');
+  const LIME='#c8ff00', LIME_DIM='rgba(200,255,0,0.2)', LIME_FAINT='rgba(200,255,0,0.06)';
+  function resize(){const W=Math.min(cv.parentElement.clientWidth||340,340);cv.width=W;cv.height=Math.round(W*0.6);}
   resize();
-  window.addEventListener('resize', () => { resize(); progress = 0; });
-
-  // Star path — a continuous 5-pointed star drawn as a single GPS trace.
-  // The line travels tip → inner → tip → inner → ... → back to start,
-  // so it draws the star in one unbroken stroke exactly like a GPS route.
-  function pts() {
-    const W = cv.width, H = cv.height;
-    const cx = 0.5, cy = 0.52;          // centre of star
-    const R  = 0.26;                     // outer radius (tip)
-    const r  = R * 0.42;                 // inner radius (indent)
-    const n  = 5;
-    const points = [];
-    for (let i = 0; i < n * 2; i++) {
-      const angle  = (i * Math.PI / n) - Math.PI / 2; // start pointing up
-      const radius = i % 2 === 0 ? R : r;
-      points.push([
-        (cx + Math.cos(angle) * radius * (H / W)) * W,
-        (cy + Math.sin(angle) * radius) * H,
-      ]);
-    }
-    // Close back to start
-    points.push(points[0]);
-    return points;
+  window.addEventListener('resize',()=>{resize();progress=0;});
+  function pts(){
+    const W=cv.width,H=cv.height,cx=0.5,cy=0.52,R=0.26,r=R*0.42,n=5,points=[];
+    for(let i=0;i<n*2;i++){const angle=(i*Math.PI/n)-Math.PI/2,radius=i%2===0?R:r;points.push([(cx+Math.cos(angle)*radius*(H/W))*W,(cy+Math.sin(angle)*radius)*H]);}
+    points.push(points[0]);return points;
   }
-
-  const LABELS = [
-    { t: 0.00, text: 'START' },
-    { t: 0.20, text: '1.0 KM' },
-    { t: 0.40, text: '2.1 KM' },
-    { t: 0.60, text: '3.1 KM' },
-    { t: 0.80, text: '4.2 KM' },
-    { t: 1.00, text: '5.1 KM' },
-  ];
-
-  function interpolate(points, t) {
-    if (t <= 0) return [...points[0]];
-    if (t >= 1) return [...points[points.length - 1]];
-    const seg = t * (points.length - 1);
-    const i   = Math.floor(seg);
-    const f   = seg - i;
-    const a   = points[i], b = points[Math.min(i+1, points.length-1)];
-    return [a[0]+(b[0]-a[0])*f, a[1]+(b[1]-a[1])*f];
-  }
-
-  function catmullPath(points) {
-    ctx.beginPath();
-    ctx.moveTo(points[0][0], points[0][1]);
-    for (let i = 1; i < points.length; i++) {
-      ctx.lineTo(points[i][0], points[i][1]);
-    }
-  }
-
-  let progress = 0, pulse = 0, loopTimer = null;
-
-  function draw() {
-    const W = cv.width, H = cv.height;
-    ctx.clearRect(0, 0, W, H);
-
-    // Faint coordinate grid
-    ctx.strokeStyle = LIME_FAINT;
-    ctx.lineWidth = 0.5;
-    for (let i = 0; i <= 10; i++) {
-      ctx.beginPath(); ctx.moveTo(i*W/10, 0); ctx.lineTo(i*W/10, H); ctx.stroke();
-    }
-    for (let j = 0; j <= 5; j++) {
-      ctx.beginPath(); ctx.moveTo(0, j*H/5); ctx.lineTo(W, j*H/5); ctx.stroke();
-    }
-
-    // Grid intersection marks
-    ctx.fillStyle = LIME_DIM;
-    for (let i = 0; i <= 10; i++) for (let j = 0; j <= 5; j++) {
-      ctx.fillRect(i*W/10-1, j*H/5-1, 2, 2);
-    }
-
-    const points = pts();
-    const endPt  = interpolate(points, progress);
-
-    // Ghost full route — dashed, very faint
-    ctx.save();
-    ctx.globalAlpha = 0.1;
-    ctx.strokeStyle = LIME;
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([3, 7]);
-    catmullPath(points);
-    ctx.stroke();
-    ctx.setLineDash([]);
-    ctx.restore();
-
-    // Build drawn portion
-    const drawn = [];
-    const steps = points.length - 1;
-    for (let i = 0; i < points.length; i++) {
-      if (i / steps <= progress) drawn.push(points[i]);
-    }
+  const LABELS=[{t:0.00,text:'START'},{t:0.20,text:'1.0 KM'},{t:0.40,text:'2.1 KM'},{t:0.60,text:'3.1 KM'},{t:0.80,text:'4.2 KM'},{t:1.00,text:'5.1 KM'}];
+  function interpolate(points,t){if(t<=0)return[...points[0]];if(t>=1)return[...points[points.length-1]];const seg=t*(points.length-1),i=Math.floor(seg),f=seg-i,a=points[i],b=points[Math.min(i+1,points.length-1)];return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];}
+  function catmullPath(points){ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);}
+  let progress=0,pulse=0,loopTimer=null;
+  function draw(){
+    const W=cv.width,H=cv.height;
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle=LIME_FAINT;ctx.lineWidth=0.5;
+    for(let i=0;i<=10;i++){ctx.beginPath();ctx.moveTo(i*W/10,0);ctx.lineTo(i*W/10,H);ctx.stroke();}
+    for(let j=0;j<=5;j++){ctx.beginPath();ctx.moveTo(0,j*H/5);ctx.lineTo(W,j*H/5);ctx.stroke();}
+    ctx.fillStyle=LIME_DIM;
+    for(let i=0;i<=10;i++)for(let j=0;j<=5;j++)ctx.fillRect(i*W/10-1,j*H/5-1,2,2);
+    const points=pts(),endPt=interpolate(points,progress);
+    ctx.save();ctx.globalAlpha=0.1;ctx.strokeStyle=LIME;ctx.lineWidth=1.5;ctx.setLineDash([3,7]);catmullPath(points);ctx.stroke();ctx.setLineDash([]);ctx.restore();
+    const drawn=[];const steps=points.length-1;
+    for(let i=0;i<points.length;i++){if(i/steps<=progress)drawn.push(points[i]);}
     drawn.push(endPt);
-
-    if (drawn.length > 1) {
-      // Outer glow
-      ctx.save();
-      ctx.shadowColor = LIME; ctx.shadowBlur = 16;
-      ctx.strokeStyle = LIME; ctx.lineWidth = 4; ctx.globalAlpha = 0.35;
-      catmullPath(drawn); ctx.stroke();
-      ctx.restore();
-      // Core line
-      ctx.save();
-      ctx.strokeStyle = LIME; ctx.lineWidth = 2; ctx.globalAlpha = 0.95;
-      ctx.shadowColor = LIME; ctx.shadowBlur = 6;
-      catmullPath(drawn); ctx.stroke();
-      ctx.restore();
-    }
-
-    // Start marker
-    ctx.save();
-    ctx.fillStyle = LIME; ctx.shadowColor = LIME; ctx.shadowBlur = 10;
-    ctx.beginPath(); ctx.arc(points[0][0], points[0][1], 5, 0, Math.PI*2); ctx.fill();
-    ctx.restore();
-
-    // Pulsing head dot
-    pulse += 0.055;
-    const pr = 5 + Math.sin(pulse) * 2.5;
-    ctx.save();
-    ctx.strokeStyle = LIME; ctx.lineWidth = 1.5;
-    ctx.globalAlpha = 0.4 + Math.sin(pulse)*0.3;
-    ctx.shadowColor = LIME; ctx.shadowBlur = 18;
-    ctx.beginPath(); ctx.arc(endPt[0], endPt[1], pr+5, 0, Math.PI*2); ctx.stroke();
-    ctx.restore();
-    ctx.save();
-    ctx.fillStyle = '#fff'; ctx.shadowColor = LIME; ctx.shadowBlur = 12;
-    ctx.beginPath(); ctx.arc(endPt[0], endPt[1], 4.5, 0, Math.PI*2); ctx.fill();
-    ctx.restore();
-
-    // Distance labels — appear as route reaches them
-    ctx.font = "700 10px 'Barlow Condensed', sans-serif";
-    LABELS.forEach(({t, text}) => {
-      if (progress < t - 0.01) return;
-      const fade = Math.min(1, (progress-(t-0.01))/0.03);
-      const pos  = interpolate(points, t);
-      const above = pos[1] > H*0.5; // flip label above/below based on position
-      const labelY = above ? pos[1] - 16 : pos[1] + 22;
-      ctx.save();
-      ctx.globalAlpha = fade * 0.75;
-      ctx.fillStyle   = LIME;
-      ctx.shadowColor = LIME; ctx.shadowBlur = 5;
-      // tick line
-      ctx.strokeStyle = LIME; ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.moveTo(pos[0], pos[1] + (above ? -5 : 5));
-      ctx.lineTo(pos[0], pos[1] + (above ? -13 : 13));
-      ctx.stroke();
-      // label — centred on the tick
-      const tw = ctx.measureText(text).width;
-      ctx.fillText(text, pos[0] - tw/2, labelY);
-      ctx.restore();
-    });
-
-    // Advance
-    if (progress < 1) {
-      progress = Math.min(1, progress + 0.005);
-    } else if (!loopTimer) {
-      loopTimer = setTimeout(() => { progress = 0; loopTimer = null; }, 1800);
-    }
-
+    if(drawn.length>1){ctx.save();ctx.shadowColor=LIME;ctx.shadowBlur=16;ctx.strokeStyle=LIME;ctx.lineWidth=4;ctx.globalAlpha=0.35;catmullPath(drawn);ctx.stroke();ctx.restore();ctx.save();ctx.strokeStyle=LIME;ctx.lineWidth=2;ctx.globalAlpha=0.95;ctx.shadowColor=LIME;ctx.shadowBlur=6;catmullPath(drawn);ctx.stroke();ctx.restore();}
+    ctx.save();ctx.fillStyle=LIME;ctx.shadowColor=LIME;ctx.shadowBlur=10;ctx.beginPath();ctx.arc(points[0][0],points[0][1],5,0,Math.PI*2);ctx.fill();ctx.restore();
+    pulse+=0.055;const pr=5+Math.sin(pulse)*2.5;
+    ctx.save();ctx.strokeStyle=LIME;ctx.lineWidth=1.5;ctx.globalAlpha=0.4+Math.sin(pulse)*0.3;ctx.shadowColor=LIME;ctx.shadowBlur=18;ctx.beginPath();ctx.arc(endPt[0],endPt[1],pr+5,0,Math.PI*2);ctx.stroke();ctx.restore();
+    ctx.save();ctx.fillStyle='#fff';ctx.shadowColor=LIME;ctx.shadowBlur=12;ctx.beginPath();ctx.arc(endPt[0],endPt[1],4.5,0,Math.PI*2);ctx.fill();ctx.restore();
+    ctx.font="700 10px 'Barlow Condensed', sans-serif";
+    LABELS.forEach(({t,text})=>{if(progress<t-0.01)return;const fade=Math.min(1,(progress-(t-0.01))/0.03),pos=interpolate(points,t),above=pos[1]>H*0.5,labelY=above?pos[1]-16:pos[1]+22;ctx.save();ctx.globalAlpha=fade*0.75;ctx.fillStyle=LIME;ctx.shadowColor=LIME;ctx.shadowBlur=5;ctx.strokeStyle=LIME;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(pos[0],pos[1]+(above?-5:5));ctx.lineTo(pos[0],pos[1]+(above?-13:13));ctx.stroke();const tw=ctx.measureText(text).width;ctx.fillText(text,pos[0]-tw/2,labelY);ctx.restore();});
+    if(progress<1){progress=Math.min(1,progress+0.005);}else if(!loopTimer){loopTimer=setTimeout(()=>{progress=0;loopTimer=null;},1800);}
     requestAnimationFrame(draw);
   }
-
-  setTimeout(() => requestAnimationFrame(draw), 500);
+  setTimeout(()=>requestAnimationFrame(draw),500);
 })();
-
 </script>
 </body>
 </html>
