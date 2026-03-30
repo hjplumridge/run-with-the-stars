@@ -8,203 +8,49 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --lime: #c8ff00;
-  --lime-mid: rgba(200,255,0,0.55);
-  --lime-low: rgba(200,255,0,0.25);
-  --lime-faint: rgba(200,255,0,0.1);
-}
-
-html, body {
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background: #000;
-}
-
-body {
-  font-family: 'Barlow Condensed', sans-serif;
-  color: var(--lime);
-  position: relative;
-}
-
-#night-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.site {
-  position: relative;
-  z-index: 1;
-  min-height: 100vh;
-}
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 56px 24px 48px;
-  text-align: center;
-}
-
-.runner-outer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
-}
+:root { --lime: #c8ff00; --lime-mid: rgba(200,255,0,0.55); --lime-low: rgba(200,255,0,0.25); --lime-faint: rgba(200,255,0,0.1); }
+html, body { width: 100%; min-height: 100vh; overflow-x: hidden; background: #000; }
+body { font-family: 'Barlow Condensed', sans-serif; color: var(--lime); position: relative; }
+#night-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.site { position: relative; z-index: 1; min-height: 100vh; }
+.hero { display: flex; flex-direction: column; align-items: center; padding: 56px 24px 48px; text-align: center; }
+.runner-outer { width: 100%; display: flex; justify-content: center; margin-bottom: 32px; }
 .runner-svg { width: 300px; height: auto; }
-
-h1 {
-  font-size: clamp(28px, 5.5vw, 64px);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  line-height: 1.0;
-  color: var(--lime);
-  max-width: 760px;
-  margin-bottom: 20px;
-}
-
-.sub {
-  font-size: clamp(15px, 2vw, 20px);
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--lime-mid);
-  max-width: 560px;
-  margin-bottom: 36px;
-}
-
-.search-wrap {
-  width: 100%;
-  max-width: 480px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 0;
-}
-.search-row {
-  display: flex;
-  width: 100%;
-  border: 1.5px solid var(--lime-mid);
-  background: rgba(0,0,0,0.5);
-}
+h1 { font-size: clamp(28px, 5.5vw, 64px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.0; color: var(--lime); max-width: 760px; margin-bottom: 20px; }
+.sub { font-size: clamp(15px, 2vw, 20px); font-weight: 400; line-height: 1.6; color: var(--lime-mid); max-width: 560px; margin-bottom: 36px; }
+.search-wrap { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 0; }
+.search-row { display: flex; width: 100%; border: 1.5px solid var(--lime-mid); background: rgba(0,0,0,0.5); }
 .search-row:focus-within { border-color: var(--lime); }
-.search-input {
-  flex: 1;
-  background: none;
-  border: none;
-  outline: none;
-  padding: 13px 16px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--lime);
-  letter-spacing: 0.3px;
-}
+.search-input { flex: 1; background: none; border: none; outline: none; padding: 13px 16px; font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 400; color: var(--lime); letter-spacing: 0.3px; }
 .search-input::placeholder { color: var(--lime-low); }
-.search-btn {
-  background: var(--lime);
-  color: #000;
-  border: none;
-  padding: 13px 22px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: opacity 0.15s;
-  white-space: nowrap;
-}
+.search-btn { background: var(--lime); color: #000; border: none; padding: 13px 22px; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: opacity 0.15s; white-space: nowrap; }
 .search-btn:hover { opacity: 0.85; }
-
-.nearest-btn {
-  width: 100%;
-  background: rgba(200,255,0,0.07);
-  border: 1.5px solid var(--lime-mid);
-  color: var(--lime);
-  padding: 15px 22px;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
-}
+.nearest-btn { width: 100%; background: rgba(200,255,0,0.07); border: 1.5px solid var(--lime-mid); color: var(--lime); padding: 15px 22px; font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
 .nearest-btn:hover { background: rgba(200,255,0,0.14); border-color: var(--lime); }
-
-.routes-section {
-  padding: 52px 0 56px;
-  text-align: center;
-}
-.routes-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--lime-low);
-  margin-bottom: 32px;
-}
-
-.fp-track {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  padding: 8px 32px 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-  scrollbar-width: none;
-}
+.routes-section { padding: 52px 0 56px; text-align: center; }
+.routes-label { font-size: 11px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: var(--lime-low); margin-bottom: 32px; }
+.fp-track { display: flex; gap: 20px; overflow-x: auto; padding: 8px 32px 16px; justify-content: center; flex-wrap: wrap; scrollbar-width: none; }
 .fp-track::-webkit-scrollbar { display: none; }
-
-.fp-card {
-  flex-shrink: 0;
-  cursor: pointer;
-  position: relative;
-  width: 120px;
-  transition: transform 0.2s;
-}
+.fp-card { flex-shrink: 0; cursor: pointer; position: relative; width: 120px; transition: transform 0.2s; }
 .fp-card:hover { transform: translateY(-5px); }
 .fp-card.active .fp-outline { stroke: var(--lime); filter: drop-shadow(0 0 8px rgba(200,255,0,0.5)); }
 .fp-outline { stroke: var(--lime-mid); fill: none; stroke-width: 1.5; transition: stroke 0.2s; }
 .fp-card:hover .fp-outline { stroke: var(--lime); }
-
-.fp-inner {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 10px 38px;
-  text-align: center;
-  pointer-events: none;
-}
+.fp-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px 10px 38px; text-align: center; pointer-events: none; }
 .fp-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--lime); line-height: 1.15; margin-bottom: 5px; }
 .fp-source { font-size: 9px; font-weight: 300; font-style: italic; color: var(--lime-mid); margin-bottom: 8px; line-height: 1.3; }
 .fp-meta { font-size: 9px; font-weight: 700; color: var(--lime-low); letter-spacing: 0.5px; line-height: 1.6; }
-
 #detail { display: none; max-width: 580px; margin: 0 auto; padding: 0 24px 80px; }
 #detail.visible { display: block; }
-
 .found-msg { font-size: 11px; font-weight: 400; color: var(--lime-low); letter-spacing: 1px; text-align: center; margin-bottom: 20px; padding: 10px; border: 1px solid var(--lime-faint); }
-
 .detail-box { border: 1.5px solid var(--lime-low); padding: 28px; background: rgba(0,0,0,0.45); }
-
 .d-tag { font-size: 10px; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; color: var(--lime-low); margin-bottom: 6px; }
 .d-name { font-size: clamp(26px, 4vw, 40px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--lime); line-height: 1; margin-bottom: 20px; }
-
 .d-stats { display: flex; gap: 0; border: 1px solid var(--lime-faint); margin-bottom: 24px; }
 .d-stat { flex: 1; text-align: center; padding: 12px 8px; border-right: 1px solid var(--lime-faint); }
 .d-stat:last-child { border-right: none; }
 .d-stat-val { font-size: 22px; font-weight: 800; color: var(--lime); letter-spacing: -0.5px; line-height: 1; }
 .d-stat-lbl { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--lime-low); margin-top: 3px; }
-
 .d-wps-label { font-size: 9px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--lime-low); margin-bottom: 14px; }
 .d-wps { display: flex; flex-direction: column; margin-bottom: 24px; }
 .d-wp { display: flex; }
@@ -216,59 +62,35 @@ h1 {
 .d-wp-text { padding: 0 0 14px 12px; }
 .d-wp-name { font-size: 13px; font-weight: 700; color: var(--lime); line-height: 1.2; }
 .d-wp-desc { font-size: 11px; font-weight: 300; font-style: italic; color: var(--lime-low); margin-top: 2px; }
-
 .maps-cta { display: flex; align-items: center; justify-content: space-between; background: var(--lime); color: #000; text-decoration: none; padding: 16px 20px; margin-bottom: 8px; transition: opacity 0.15s; }
 .maps-cta:hover { opacity: 0.88; }
 .maps-cta-label { font-size: 17px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: #000; }
 .maps-cta-sub { font-size: 10px; font-weight: 400; color: rgba(0,0,0,0.5); margin-top: 1px; }
 .maps-cta-arrow { font-size: 20px; color: rgba(0,0,0,0.45); }
-
 .copy-cta { width: 100%; background: transparent; border: 1.5px solid var(--lime-low); color: var(--lime-low); padding: 13px 20px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
 .copy-cta:hover { border-color: var(--lime); color: var(--lime); }
-
-#loading-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 9998;
-  background: rgba(0,0,0,0.85);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
+#loading-overlay { display: none; position: fixed; inset: 0; z-index: 9998; background: rgba(0,0,0,0.85); flex-direction: column; align-items: center; justify-content: center; gap: 20px; }
 #loading-overlay.show { display: flex; }
 .loading-star { font-size: 48px; animation: spin 1.4s linear infinite; color: var(--lime); line-height: 1; }
 .loading-text { font-size: 22px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; color: var(--lime); }
 .loading-sub { font-size: 13px; font-weight: 300; color: var(--lime-low); letter-spacing: 2px; }
-
 #toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: var(--lime); color: #000; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; padding: 11px 28px; opacity: 0; transition: opacity 0.2s; pointer-events: none; z-index: 9999; white-space: nowrap; }
 #toast.show { opacity: 1; }
-
 footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; letter-spacing: 3px; text-transform: uppercase; color: var(--lime-faint); }
-
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-.fu  { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
-.fu1 { animation-delay: 0.05s; }
-.fu2 { animation-delay: 0.18s; }
-.fu3 { animation-delay: 0.32s; }
-.fu4 { animation-delay: 0.46s; }
-.fu5 { animation-delay: 0.58s; }
-
+.fu { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+.fu1 { animation-delay: 0.05s; } .fu2 { animation-delay: 0.18s; } .fu3 { animation-delay: 0.32s; } .fu4 { animation-delay: 0.46s; } .fu5 { animation-delay: 0.58s; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .spin { display: inline-block; animation: spin 0.85s linear infinite; }
 </style>
 </head>
 <body>
-
 <div id="loading-overlay">
   <div class="loading-star">★</div>
   <div class="loading-text">Just limbering up…</div>
   <div class="loading-sub">Finding the route</div>
 </div>
-
 <canvas id="night-bg"></canvas>
-
 <div class="site">
   <div class="hero">
     <div class="runner-outer fu fu1" style="width:100%;max-width:700px;margin-bottom:32px;">
@@ -286,42 +108,33 @@ footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; l
       </button>
     </div>
   </div>
-
   <div class="routes-section fu fu5">
     <div class="routes-label">Featured Routes</div>
     <div class="fp-track" id="fp-track"></div>
   </div>
-
   <div id="detail"><div id="detail-inner"></div></div>
-
   <footer>Run With The Stars &nbsp;·&nbsp; Iconic scenes. Real routes. Your legs.</footer>
 </div>
-
 <div id="toast"></div>
-
 <script>
-(function () {
-  const cv = document.getElementById('night-bg');
-  const cx = cv.getContext('2d');
-  function paint() {
-    const W = cv.width = window.innerWidth;
-    const H = cv.height = window.innerHeight;
-    const sky = cx.createLinearGradient(0,0,0,H);
-    sky.addColorStop(0,'#050608'); sky.addColorStop(0.45,'#07090e');
-    sky.addColorStop(0.72,'#0a0c0a'); sky.addColorStop(1,'#060806');
-    cx.fillStyle=sky; cx.fillRect(0,0,W,H);
+(function(){
+  const cv=document.getElementById('night-bg'),cx=cv.getContext('2d');
+  function paint(){
+    const W=cv.width=window.innerWidth,H=cv.height=window.innerHeight;
+    const sky=cx.createLinearGradient(0,0,0,H);
+    sky.addColorStop(0,'#050608');sky.addColorStop(0.45,'#07090e');sky.addColorStop(0.72,'#0a0c0a');sky.addColorStop(1,'#060806');
+    cx.fillStyle=sky;cx.fillRect(0,0,W,H);
     const rng=(s)=>{let x=s;return()=>{x=Math.sin(x*127.1+311.7)*43758.5;return x-Math.floor(x);};};
     const r=rng(42);
     for(let i=0;i<180;i++){const sx=r()*W,sy=r()*H*0.65,sr=r()<0.07?1.2:0.5;cx.globalAlpha=0.15+r()*0.55;cx.beginPath();cx.arc(sx,sy,sr,0,Math.PI*2);cx.fill();}
     cx.globalAlpha=1;
     const gnd=cx.createLinearGradient(0,H*0.74,0,H);
-    gnd.addColorStop(0,'rgba(12,14,10,0.9)'); gnd.addColorStop(1,'rgba(6,8,5,1)');
-    cx.fillStyle=gnd; cx.fillRect(0,H*0.74,W,H*0.26);
-    cx.strokeStyle='rgba(200,255,0,0.04)'; cx.lineWidth=1;
-    cx.beginPath(); cx.moveTo(0,H*0.74); cx.lineTo(W,H*0.74); cx.stroke();
+    gnd.addColorStop(0,'rgba(12,14,10,0.9)');gnd.addColorStop(1,'rgba(6,8,5,1)');
+    cx.fillStyle=gnd;cx.fillRect(0,H*0.74,W,H*0.26);
+    cx.strokeStyle='rgba(200,255,0,0.04)';cx.lineWidth=1;cx.beginPath();cx.moveTo(0,H*0.74);cx.lineTo(W,H*0.74);cx.stroke();
     const vig=cx.createRadialGradient(W/2,H/2,H*0.08,W/2,H/2,H*0.82);
-    vig.addColorStop(0,'transparent'); vig.addColorStop(1,'rgba(0,0,0,0.78)');
-    cx.fillStyle=vig; cx.fillRect(0,0,W,H);
+    vig.addColorStop(0,'transparent');vig.addColorStop(1,'rgba(0,0,0,0.78)');
+    cx.fillStyle=vig;cx.fillRect(0,0,W,H);
     const id=cx.createImageData(W,H),d=id.data,rg=rng(17);
     for(let i=0;i<d.length;i+=4){const v=rg()*32-16;d[i]=d[i+1]=d[i+2]=128+v;d[i+3]=Math.floor(rg()*16);}
     cx.putImageData(id,0,0);
@@ -330,93 +143,76 @@ footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; l
   window.addEventListener('resize',()=>{clearTimeout(window._rp);window._rp=setTimeout(paint,120);});
 })();
 
-const ROUTES = [
-  { id:0, name:"Rocky's Training Run", source:"Rocky (1976)", loc:"Philadelphia, PA", dist:"5.1KM", elev:"62M", time:"28 MIN", lat:39.9656, lon:-75.1810, note:"Run at dawn. The 72 museum steps are steeper than they look on screen.", waypoints:[{n:"Eastern State Penitentiary",d:"Start at dawn.",lat:39.9753,lon:-75.1724,cls:"start"},{n:"Fairmount Ave",d:"West through the neighbourhood.",lat:39.9700,lon:-75.1770},{n:"Kelly Drive",d:"South along the Schuylkill River.",lat:39.9680,lon:-75.1800},{n:"Eakins Oval",d:"Past the fountain.",lat:39.9660,lon:-75.1810},{n:"Philadelphia Museum of Art",d:"Climb the 72 steps. Arms up.",lat:39.9656,lon:-75.1810,cls:"end"}] },
-  { id:1, name:"Phoebe Runs Weird", source:"Friends (1994–2004)", loc:"Central Park, New York", dist:"5.2KM", elev:"28M", time:"29 MIN", lat:40.7812, lon:-73.9665, note:"Arms out. No technique. Full Phoebe energy. Non-negotiable.", waypoints:[{n:"Tavern on the Green",d:"Start. Arms out immediately.",lat:40.7767,lon:-73.9810,cls:"start"},{n:"The Mall",d:"South under the elm canopy.",lat:40.7718,lon:-73.9734},{n:"Bethesda Fountain",d:"The centrepiece. Keep running.",lat:40.7734,lon:-73.9712},{n:"The Reservoir",d:"Lap the Jackie Kennedy path.",lat:40.7856,lon:-73.9640},{n:"Tavern on the Green",d:"Full loop. You made it.",lat:40.7767,lon:-73.9810,cls:"end"}] },
-  { id:2, name:"Run, Forest, Run!", source:"Forrest Gump (1994)", loc:"Savannah, GA", dist:"5.0KM", elev:"14M", time:"28 MIN", lat:32.0758, lon:-81.0932, note:"The bench is in the museum now. But the square is unchanged. Mama would approve.", waypoints:[{n:"Chippewa Square",d:"Where Forrest told his story.",lat:32.0758,lon:-81.0932,cls:"start"},{n:"Forsyth Park",d:"South to the grand fountain.",lat:32.0680,lon:-81.0962},{n:"Bull Street South",d:"Down the oak-lined boulevard.",lat:32.0640,lon:-81.0950},{n:"Savannah History Museum",d:"Where the real bench lives.",lat:32.0810,lon:-81.0990},{n:"Chippewa Square",d:"Back to the start. Life is short.",lat:32.0758,lon:-81.0932,cls:"end"}] },
-  { id:3, name:"Choose Running", source:"Trainspotting (1996)", loc:"Edinburgh, Scotland", dist:"4.8KM", elev:"38M", time:"26 MIN", lat:55.9524, lon:-3.1883, note:"Lust for Life on full volume. Choose this. Choose running.", waypoints:[{n:"107–109 Princes Street",d:"Start outside the former John Menzies.",lat:55.9524,lon:-3.1883,cls:"start"},{n:"Hanover Street",d:"East past the Royal Scottish Academy.",lat:55.9516,lon:-3.1942},{n:"Leith Street Steps",d:"Down to Calton Road.",lat:55.9543,lon:-3.1823},{n:"Calton Road under Regent Bridge",d:"This is where the car hit him.",lat:55.9530,lon:-3.1798},{n:"Edinburgh Waverley Station",d:"Finish beneath the arches.",lat:55.9521,lon:-3.1891,cls:"end"}] },
-  { id:4, name:"Golden Hour", source:"Harry Styles — Golden (2020)", loc:"Amalfi Coast, Italy", dist:"5.1KM", elev:"210M", time:"35 MIN", lat:40.6333, lon:14.6333, note:"Trail shoes required. ~400 stone steps. Time it for actual golden hour.", waypoints:[{n:"Maiori Lungomare",d:"Start at the seafront.",lat:40.6330,lon:14.6430,cls:"start"},{n:"SS163 Tunnels",d:"Sprint through the coastal tunnels.",lat:40.6300,lon:14.6380},{n:"Collegiata di Santa Maria",d:"Up Via Vena stairs.",lat:40.6340,lon:14.6400},{n:"Sentiero dei Limoni",d:"Trail through the lemon groves.",lat:40.6390,lon:14.6350},{n:"Minori Beach",d:"Finish at the Tyrrhenian Sea.",lat:40.6280,lon:14.6230,cls:"end"}] },
+const ROUTES=[
+  {id:0,name:"Rocky's Training Run",source:"Rocky (1976)",loc:"Philadelphia, PA",dist:"5.1KM",elev:"62M",time:"28 MIN",lat:39.9656,lon:-75.1810,note:"Run at dawn. The 72 museum steps are steeper than they look on screen.",waypoints:[{n:"Eastern State Penitentiary",d:"Start at dawn.",lat:39.9753,lon:-75.1724,cls:"start"},{n:"Fairmount Ave",d:"West through the neighbourhood.",lat:39.9700,lon:-75.1770},{n:"Kelly Drive",d:"South along the Schuylkill River.",lat:39.9680,lon:-75.1800},{n:"Eakins Oval",d:"Past the fountain.",lat:39.9660,lon:-75.1810},{n:"Philadelphia Museum of Art",d:"Climb the 72 steps. Arms up.",lat:39.9656,lon:-75.1810,cls:"end"}]},
+  {id:1,name:"Phoebe Runs Weird",source:"Friends (1994–2004)",loc:"Central Park, New York",dist:"5.2KM",elev:"28M",time:"29 MIN",lat:40.7812,lon:-73.9665,note:"Arms out. No technique. Full Phoebe energy. Non-negotiable.",waypoints:[{n:"Tavern on the Green",d:"Start. Arms out immediately.",lat:40.7767,lon:-73.9810,cls:"start"},{n:"The Mall",d:"South under the elm canopy.",lat:40.7718,lon:-73.9734},{n:"Bethesda Fountain",d:"The centrepiece. Keep running.",lat:40.7734,lon:-73.9712},{n:"The Reservoir",d:"Lap the Jackie Kennedy path.",lat:40.7856,lon:-73.9640},{n:"Tavern on the Green",d:"Full loop. You made it.",lat:40.7767,lon:-73.9810,cls:"end"}]},
+  {id:2,name:"Run, Forest, Run!",source:"Forrest Gump (1994)",loc:"Savannah, GA",dist:"5.0KM",elev:"14M",time:"28 MIN",lat:32.0758,lon:-81.0932,note:"The bench is in the museum now. But the square is unchanged. Mama would approve.",waypoints:[{n:"Chippewa Square",d:"Where Forrest told his story.",lat:32.0758,lon:-81.0932,cls:"start"},{n:"Forsyth Park",d:"South to the grand fountain.",lat:32.0680,lon:-81.0962},{n:"Bull Street South",d:"Down the oak-lined boulevard.",lat:32.0640,lon:-81.0950},{n:"Savannah History Museum",d:"Where the real bench lives.",lat:32.0810,lon:-81.0990},{n:"Chippewa Square",d:"Back to the start. Life is short.",lat:32.0758,lon:-81.0932,cls:"end"}]},
+  {id:3,name:"Choose Running",source:"Trainspotting (1996)",loc:"Edinburgh, Scotland",dist:"4.8KM",elev:"38M",time:"26 MIN",lat:55.9524,lon:-3.1883,note:"Lust for Life on full volume. Choose this. Choose running.",waypoints:[{n:"107–109 Princes Street",d:"Start outside the former John Menzies.",lat:55.9524,lon:-3.1883,cls:"start"},{n:"Hanover Street",d:"East past the Royal Scottish Academy.",lat:55.9516,lon:-3.1942},{n:"Leith Street Steps",d:"Down to Calton Road.",lat:55.9543,lon:-3.1823},{n:"Calton Road under Regent Bridge",d:"This is where the car hit him.",lat:55.9530,lon:-3.1798},{n:"Edinburgh Waverley Station",d:"Finish beneath the arches.",lat:55.9521,lon:-3.1891,cls:"end"}]},
+  {id:4,name:"Golden Hour",source:"Harry Styles — Golden (2020)",loc:"Amalfi Coast, Italy",dist:"5.1KM",elev:"210M",time:"35 MIN",lat:40.6333,lon:14.6333,note:"Trail shoes required. ~400 stone steps. Time it for actual golden hour.",waypoints:[{n:"Maiori Lungomare",d:"Start at the seafront.",lat:40.6330,lon:14.6430,cls:"start"},{n:"SS163 Tunnels",d:"Sprint through the coastal tunnels.",lat:40.6300,lon:14.6380},{n:"Collegiata di Santa Maria",d:"Up Via Vena stairs.",lat:40.6340,lon:14.6400},{n:"Sentiero dei Limoni",d:"Trail through the lemon groves.",lat:40.6390,lon:14.6350},{n:"Minori Beach",d:"Finish at the Tyrrhenian Sea.",lat:40.6280,lon:14.6230,cls:"end"}]},
 ];
 
-function buildMapsURL(route) {
-  const w=route.waypoints, origin=`${w[0].lat},${w[0].lon}`, dest=`${w[w.length-1].lat},${w[w.length-1].lon}`;
-  const mid=w.slice(1,-1).map(p=>`${p.lat},${p.lon}`).join('|');
-  return `https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=${origin}&destination=${dest}${mid?'&waypoints='+encodeURIComponent(mid):''}`;
-}
+function buildMapsURL(route){const w=route.waypoints,origin=`${w[0].lat},${w[0].lon}`,dest=`${w[w.length-1].lat},${w[w.length-1].lon}`,mid=w.slice(1,-1).map(p=>`${p.lat},${p.lon}`).join('|');return `https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=${origin}&destination=${dest}${mid?'&waypoints='+encodeURIComponent(mid):''}`;}
 
-function footprintSVG(active) {
-  const stroke = active ? '#c8ff00' : 'rgba(200,255,0,0.45)';
-  return `<svg viewBox="0 0 110 200" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:200px;display:block;"><path d="M 55 192 C 32 192 18 174 16 154 C 14 136 20 118 22 100 C 24 82 20 66 22 50 C 24 34 32 18 46 10 C 52 7 60 6 66 9 C 76 14 80 28 80 42 C 80 56 74 68 74 82 C 74 96 80 112 82 130 C 84 150 90 168 86 180 C 82 192 68 194 55 192 Z" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="44" cy="7" rx="9" ry="11" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="58" cy="4" rx="7" ry="9" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="70" cy="6" rx="6" ry="8" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="79" cy="13" rx="5" ry="7" stroke="${stroke}" fill="none" stroke-width="1.5"/><ellipse cx="86" cy="23" rx="4.5" ry="6" stroke="${stroke}" fill="none" stroke-width="1.5"/></svg>`;
-}
+function footprintSVG(active){const s=active?'#c8ff00':'rgba(200,255,0,0.45)';return `<svg viewBox="0 0 110 200" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:200px;display:block;"><path d="M 55 192 C 32 192 18 174 16 154 C 14 136 20 118 22 100 C 24 82 20 66 22 50 C 24 34 32 18 46 10 C 52 7 60 6 66 9 C 76 14 80 28 80 42 C 80 56 74 68 74 82 C 74 96 80 112 82 130 C 84 150 90 168 86 180 C 82 192 68 194 55 192 Z" stroke="${s}" fill="none" stroke-width="1.5"/><ellipse cx="44" cy="7" rx="9" ry="11" stroke="${s}" fill="none" stroke-width="1.5"/><ellipse cx="58" cy="4" rx="7" ry="9" stroke="${s}" fill="none" stroke-width="1.5"/><ellipse cx="70" cy="6" rx="6" ry="8" stroke="${s}" fill="none" stroke-width="1.5"/><ellipse cx="79" cy="13" rx="5" ry="7" stroke="${s}" fill="none" stroke-width="1.5"/><ellipse cx="86" cy="23" rx="4.5" ry="6" stroke="${s}" fill="none" stroke-width="1.5"/></svg>`;}
 
-function renderCards() {
-  document.getElementById('fp-track').innerHTML = ROUTES.map(r => `
-    <div class="fp-card" id="fp-${r.id}" onclick="showRoute(${r.id})">
-      ${footprintSVG(false)}
-      <div class="fp-inner">
-        <div class="fp-name">${r.name}</div>
-        <div class="fp-source">${r.source}</div>
-        <div class="fp-meta">${r.dist}<br>${r.time}<br>${r.loc.split(',')[0]}</div>
-      </div>
-    </div>`).join('');
-}
+function renderCards(){document.getElementById('fp-track').innerHTML=ROUTES.map(r=>`<div class="fp-card" id="fp-${r.id}" onclick="showRoute(${r.id})">${footprintSVG(false)}<div class="fp-inner"><div class="fp-name">${r.name}</div><div class="fp-source">${r.source}</div><div class="fp-meta">${r.dist}<br>${r.time}<br>${r.loc.split(',')[0]}</div></div></div>`).join('');}
 
-function showRoute(id, banner) {
-  const r = ROUTES.find(x=>x.id===id)||ROUTES[0];
-  const url = buildMapsURL(r);
-  document.querySelectorAll('.fp-card').forEach(c=>{c.classList.remove('active');const svg=c.querySelector('svg');if(svg)svg.outerHTML=footprintSVG(false);});
-  const fp=document.getElementById('fp-'+id);
-  if(fp){fp.classList.add('active');}
+function showRoute(id,banner){
+  const r=ROUTES.find(x=>x.id===id)||ROUTES[0],url=buildMapsURL(r);
+  document.querySelectorAll('.fp-card').forEach(c=>{c.classList.remove('active');});
+  const fp=document.getElementById('fp-'+id);if(fp)fp.classList.add('active');
   const wpsHTML=r.waypoints.map((w,i,arr)=>{const last=i===arr.length-1;return `<div class="d-wp"><div class="d-wp-col"><div class="d-dot ${w.cls||''} ${last&&!w.cls?'end':''}"></div>${!last?'<div class="d-line"></div>':''}</div><div class="d-wp-text"><div class="d-wp-name">${w.n}</div><div class="d-wp-desc">${w.d}</div></div></div>`;}).join('');
   document.getElementById('detail-inner').innerHTML=`${banner?`<div class="found-msg">${banner}</div>`:''}<div class="detail-box"><div class="d-tag">${r.source}</div><div class="d-name">${r.name}</div><div class="d-stats"><div class="d-stat"><div class="d-stat-val">${r.dist}</div><div class="d-stat-lbl">Distance</div></div><div class="d-stat"><div class="d-stat-val">${r.elev}</div><div class="d-stat-lbl">Elevation</div></div><div class="d-stat"><div class="d-stat-val">${r.time}</div><div class="d-stat-lbl">Est. time</div></div></div><div class="d-wps-label">Route Waypoints</div><div class="d-wps">${wpsHTML}</div><a class="maps-cta" href="${url}" target="_blank" rel="noopener"><div><div class="maps-cta-label">Open in Google Maps</div><div class="maps-cta-sub">Walking · ${r.waypoints.length} stops · opens Maps app on mobile</div></div><div class="maps-cta-arrow">↗</div></a><button class="copy-cta" onclick="copyLink('${url}')">Copy Maps link</button>${r.note?`<p style="margin-top:16px;font-size:12px;font-weight:300;font-style:italic;color:rgba(200,255,0,0.4);line-height:1.65;">${r.note}</p>`:''}</div>`;
-  const sec=document.getElementById('detail');
-  sec.classList.add('visible');
+  const sec=document.getElementById('detail');sec.classList.add('visible');
   setTimeout(()=>sec.scrollIntoView({behavior:'smooth',block:'start'}),80);
 }
 
-function showLoading(sub) {
-  document.querySelector('#loading-overlay .loading-sub').textContent = sub||'Finding the route';
-  document.getElementById('loading-overlay').classList.add('show');
-}
-function hideLoading() {
-  document.getElementById('loading-overlay').classList.remove('show');
-}
+function showLoading(sub){document.querySelector('#loading-overlay .loading-sub').textContent=sub||'Finding the route';document.getElementById('loading-overlay').classList.add('show');}
+function hideLoading(){document.getElementById('loading-overlay').classList.remove('show');}
 
-async function fetchRoute(query) {
+async function fetchRoute(query){
   const res=await fetch('/api/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query})});
   const data=await res.json();
   if(!res.ok||data.error) throw new Error(data.error||'Could not find a route for that.');
   const route={...data.route,id:99};
   const existing=ROUTES.findIndex(r=>r.id===99);
-  if(existing>=0) ROUTES.splice(existing,1);
+  if(existing>=0)ROUTES.splice(existing,1);
   ROUTES.push(route);
   return route;
 }
 
-function findNearest() {
+function findNearest(){
   if(!navigator.geolocation){alert('Location access is not available in your browser.');return;}
   const lbl=document.getElementById('nb-lbl');
   lbl.innerHTML='<span class="spin">◌</span> Detecting your location…';
   navigator.geolocation.getCurrentPosition(async pos=>{
-    const {latitude:lat,longitude:lon}=pos.coords;
-    let placeName=`${lat.toFixed(4)}, ${lon.toFixed(4)}`;
-    try{const geo=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`);const geoData=await geo.json();const addr=geoData.address;placeName=addr.city||addr.town||addr.village||addr.county||placeName;}catch(e){}
-    lbl.innerHTML='<span class="spin">◌</span> Searching near '+placeName+'…';
-    showLoading('Searching for iconic runs near '+placeName);
+    const{latitude:lat,longitude:lon}=pos.coords;
+    let city=null,country=null;
     try{
-      const query=`Find me an iconic running scene from a film, TV show or music video that was actually filmed near ${placeName} (coordinates: ${lat.toFixed(3)}, ${lon.toFixed(3)}). The filming location must be genuinely close to these coordinates.`;
+      const geo=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10`);
+      const geoData=await geo.json();
+      const addr=geoData.address;
+      city=addr.city||addr.town||addr.county||addr.state_district||addr.state;
+      country=addr.country||'';
+    }catch(e){}
+    if(!city){lbl.textContent='Find my nearest iconic route';alert('Could not detect your location. Try searching manually.');return;}
+    const location=country?`${city}, ${country}`:city;
+    lbl.innerHTML='<span class="spin">◌</span> Searching '+location+'…';
+    showLoading('Searching for iconic runs filmed in '+location);
+    const query=`Find me the most famous or iconic running scene from any film, TV show or music video that was actually filmed ON LOCATION in ${location}. The scene must have been physically shot in ${city} — not just set there. Return the route based on the real filming locations in ${city}.`;
+    try{
       const route=await fetchRoute(query);
-      lbl.textContent='Found — '+route.name;
-      showRoute(99,`Nearest iconic route to you: ${route.name} (${route.source}) — ${route.loc}`);
+      lbl.textContent='Found near you — '+route.name;
+      showRoute(99,`Filmed in ${city}: ${route.name} (${route.source})`);
     }catch(err){
       lbl.textContent='Find my nearest iconic route';
-      alert(err.message||'Could not find a nearby route. Try searching manually.');
+      alert('Could not find a route filmed in '+city+'. Try searching for a specific film instead.');
     }finally{hideLoading();}
   },()=>{lbl.textContent='Find my nearest iconic route';alert('Location access denied — please enable permissions and try again.');});
 }
 
-async function doSearch() {
-  const q=document.getElementById('q').value.trim(); if(!q)return;
+async function doSearch(){
+  const q=document.getElementById('q').value.trim();if(!q)return;
   const m=ROUTES.find(r=>r.name.toLowerCase().includes(q.toLowerCase())||r.source.toLowerCase().includes(q.toLowerCase()));
   if(m){showRoute(m.id);return;}
   showLoading('Finding the route');
@@ -426,16 +222,13 @@ async function doSearch() {
 }
 document.getElementById('q').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch();});
 
-function copyLink(url){
-  navigator.clipboard.writeText(url).then(()=>{const t=document.getElementById('toast');t.textContent='Maps link copied';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);});
-}
+function copyLink(url){navigator.clipboard.writeText(url).then(()=>{const t=document.getElementById('toast');t.textContent='Maps link copied';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);});}
 
 renderCards();
 
 (function(){
-  const cv=document.getElementById('hero-canvas');
-  const ctx=cv.getContext('2d');
-  const LIME='#c8ff00', LIME_DIM='rgba(200,255,0,0.2)', LIME_FAINT='rgba(200,255,0,0.06)';
+  const cv=document.getElementById('hero-canvas'),ctx=cv.getContext('2d');
+  const LIME='#c8ff00',LIME_DIM='rgba(200,255,0,0.2)',LIME_FAINT='rgba(200,255,0,0.06)';
   function resize(){const W=Math.min(cv.parentElement.clientWidth||340,340);cv.width=W;cv.height=Math.round(W*0.6);}
   resize();
   window.addEventListener('resize',()=>{resize();progress=0;});
@@ -449,8 +242,7 @@ renderCards();
   function catmullPath(points){ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);}
   let progress=0,pulse=0,loopTimer=null;
   function draw(){
-    const W=cv.width,H=cv.height;
-    ctx.clearRect(0,0,W,H);
+    const W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);
     ctx.strokeStyle=LIME_FAINT;ctx.lineWidth=0.5;
     for(let i=0;i<=10;i++){ctx.beginPath();ctx.moveTo(i*W/10,0);ctx.lineTo(i*W/10,H);ctx.stroke();}
     for(let j=0;j<=5;j++){ctx.beginPath();ctx.moveTo(0,j*H/5);ctx.lineTo(W,j*H/5);ctx.stroke();}
@@ -458,7 +250,7 @@ renderCards();
     for(let i=0;i<=10;i++)for(let j=0;j<=5;j++)ctx.fillRect(i*W/10-1,j*H/5-1,2,2);
     const points=pts(),endPt=interpolate(points,progress);
     ctx.save();ctx.globalAlpha=0.1;ctx.strokeStyle=LIME;ctx.lineWidth=1.5;ctx.setLineDash([3,7]);catmullPath(points);ctx.stroke();ctx.setLineDash([]);ctx.restore();
-    const drawn=[];const steps=points.length-1;
+    const drawn=[],steps=points.length-1;
     for(let i=0;i<points.length;i++){if(i/steps<=progress)drawn.push(points[i]);}
     drawn.push(endPt);
     if(drawn.length>1){ctx.save();ctx.shadowColor=LIME;ctx.shadowBlur=16;ctx.strokeStyle=LIME;ctx.lineWidth=4;ctx.globalAlpha=0.35;catmullPath(drawn);ctx.stroke();ctx.restore();ctx.save();ctx.strokeStyle=LIME;ctx.lineWidth=2;ctx.globalAlpha=0.95;ctx.shadowColor=LIME;ctx.shadowBlur=6;catmullPath(drawn);ctx.stroke();ctx.restore();}
