@@ -154,8 +154,13 @@ export default async function handler(req, res) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
 
-  const coordMatch = query.match(/^(-?\d+\.\d+),\s*(-?\d+\.\d+)\s+radius:(.+?)(?:\s+Do NOT|$)/);
+  const coordMatch = query.match(/^(-?\d+\.?\d*),\s*(-?\d+\.?\d*)\s+radius:(.+?)(?:\s+Do NOT|$)/i);
   const isLocationQuery = !!coordMatch;
+
+  // Debug log — visible in Vercel function logs
+  console.log('QUERY:', JSON.stringify(query));
+  console.log('IS LOCATION QUERY:', isLocationQuery);
+  console.log('COORD MATCH:', coordMatch ? [coordMatch[1], coordMatch[2], coordMatch[3]] : null);
 
   let prompt;
 
