@@ -1,138 +1,77 @@
 const FILMING_LOCATIONS = [
-
-  // ── UK & IRELAND ──────────────────────────────────────────
-  { film: "Harry Potter series", year: "2001-2011", city: "Oxford, UK", lat: 51.7536, lon: -1.2527, hint: "Bodleian Library and Christ Church College used as Hogwarts interiors. Students run through the cloisters and courtyards." },
+  { film: "Harry Potter series", year: "2001-2011", city: "Oxford, UK", lat: 51.7519, lon: -1.2578, hint: "Christ Church College and the Bodleian Library were used as Hogwarts. Run the route between the Bodleian, Radcliffe Camera, Christ Church and the Covered Market." },
   { film: "Inspector Morse / Endeavour", year: "1987-2023", city: "Oxford, UK", lat: 51.7520, lon: -1.2550, hint: "Filmed extensively on location in Oxford city centre — Radcliffe Square, the High Street, Broad Street and the covered market." },
   { film: "My Oxford Year", year: "2025", city: "Oxford, UK", lat: 51.7548, lon: -1.2544, hint: "Netflix film shot on location around Oxford University — Radcliffe Camera, Christ Church Meadow, and the river." },
   { film: "Chariots of Fire", year: "1981", city: "St Andrews, Scotland", lat: 56.3398, lon: -2.7967, hint: "The iconic opening beach run was filmed on West Sands beach, St Andrews, Scotland." },
   { film: "Trainspotting", year: "1996", city: "Edinburgh, Scotland", lat: 55.9524, lon: -3.1883, hint: "The opening chase down Princes Street filmed on location in Edinburgh city centre." },
-  { film: "T2 Trainspotting", year: "2017", city: "Edinburgh, Scotland", lat: 55.9500, lon: -3.1900, hint: "Renton and Simon's run through Edinburgh was filmed on location — Arthur's Seat and the Old Town." },
+  { film: "T2 Trainspotting", year: "2017", city: "Edinburgh, Scotland", lat: 55.9500, lon: -3.1900, hint: "Renton and Simon's run through Edinburgh filmed on location — Arthur's Seat and the Old Town." },
   { film: "28 Days Later", year: "2002", city: "London, UK", lat: 51.5007, lon: -0.1246, hint: "Jim's run through an eerily empty London — Westminster Bridge, Piccadilly, and the City at dawn." },
   { film: "Notting Hill", year: "1999", city: "London, UK", lat: 51.5152, lon: -0.2016, hint: "The famous run through the seasons filmed in and around Portobello Road and St Luke's Mews." },
-  { film: "Four Weddings and a Funeral", year: "1994", city: "Oxfordshire, UK", lat: 51.8330, lon: -1.3330, hint: "Charles's frantic morning run filmed in and around the Witney and Burford area of Oxfordshire." },
   { film: "Billy Elliot", year: "2000", city: "County Durham, UK", lat: 54.7753, lon: -1.5849, hint: "Filmed on location in Easington Colliery. Billy runs through the real pit village streets." },
   { film: "The Full Monty", year: "1997", city: "Sheffield, UK", lat: 53.3811, lon: -1.4701, hint: "The lads' training run filmed entirely on location through real Sheffield streets." },
   { film: "Lock Stock and Two Smoking Barrels", year: "1998", city: "London, UK", lat: 51.5200, lon: -0.0800, hint: "Filmed on location in East London — Bethnal Green and Hackney streets." },
   { film: "Snatch", year: "2000", city: "London, UK", lat: 51.5137, lon: -0.1337, hint: "Guy Ritchie's frantic London chase sequences filmed across central and East London." },
   { film: "Run Fatboy Run", year: "2007", city: "London, UK", lat: 51.4995, lon: -0.1245, hint: "Dennis's marathon run through London filmed on location — the Thames Embankment and Westminster." },
   { film: "Skyfall", year: "2012", city: "London, UK", lat: 51.5085, lon: -0.1257, hint: "Bond's rooftop chase through London filmed on location — Whitehall and the Embankment." },
-  { film: "About Time", year: "2013", city: "London, UK", lat: 51.5265, lon: -0.0755, hint: "Tim's runs through London filmed in Shoreditch and along the Thames." },
   { film: "Eddie the Eagle", year: "2015", city: "Cheltenham, UK", lat: 51.8994, lon: -2.0783, hint: "Eddie's early training runs filmed on location in and around Cheltenham." },
   { film: "This Is England", year: "2006", city: "Nottingham, UK", lat: 52.9548, lon: -1.1581, hint: "Filmed on location in Nottingham's Radford area." },
   { film: "Kes", year: "1969", city: "Barnsley, UK", lat: 53.5526, lon: -1.4797, hint: "Billy Casper's run across the South Yorkshire fields filmed on location around Barnsley." },
-  { film: "Atonement", year: "2007", city: "Dieppe, France / Dunkirk", lat: 51.0543, lon: 2.3752, hint: "The famous 5-minute Dunkirk tracking shot — Robbie walks and runs along the beach — was filmed on location in Redcar, North Yorkshire." },
   { film: "Atonement beach scene", year: "2007", city: "Redcar, UK", lat: 54.6175, lon: -1.0644, hint: "The Dunkirk beach tracking shot was actually filmed at Redcar beach in North Yorkshire." },
-  { film: "The Inbetweeners Movie", year: "2011", city: "Crete, Greece", lat: 35.2401, lon: 24.8093, hint: "The lads' chaotic run across the resort was filmed on location in Malia, Crete." },
-  { film: "Mrs Doubtfire", year: "1993", city: "San Francisco, USA", lat: 37.7749, lon: -122.4194, hint: "The park run and chase scenes were filmed on location in San Francisco's Golden Gate Park." },
   { film: "Braveheart", year: "1995", city: "Glen Nevis, Scotland", lat: 56.7959, lon: -5.0037, hint: "Wallace's run through the Highland landscape was filmed on location in Glen Nevis near Fort William." },
-  { film: "Rob Roy", year: "1995", city: "Scottish Highlands", lat: 57.1200, lon: -4.7200, hint: "Filmed on location in the Scottish Highlands — Loch Morar and Glen Coe." },
   { film: "The Commitments", year: "1991", city: "Dublin, Ireland", lat: 53.3498, lon: -6.2603, hint: "The lads' run through Dublin's northside was filmed on location in Clontarf and the city centre." },
-  { film: "Once", year: "2006", city: "Dublin, Ireland", lat: 53.3488, lon: -6.2589, hint: "Filmed on location on Dublin's Grafton Street and surrounding streets." },
   { film: "Calvary", year: "2014", city: "County Sligo, Ireland", lat: 54.2697, lon: -8.4694, hint: "Father James's run along the Atlantic coast filmed on location on Enniscrone beach, County Sligo." },
-
-  // ── EUROPE ───────────────────────────────────────────────
   { film: "Run Lola Run", year: "1998", city: "Berlin, Germany", lat: 52.5200, lon: 13.4050, hint: "Lola's three desperate 20-minute runs filmed on location across Berlin — Friedrichshain, Mitte and Kreuzberg." },
   { film: "Goodbye Lenin", year: "2003", city: "Berlin, Germany", lat: 52.5170, lon: 13.4020, hint: "Alex's frantic run through East Berlin filmed on location in Prenzlauer Berg and Alexanderplatz." },
   { film: "The Bourne Identity", year: "2002", city: "Paris, France", lat: 48.8566, lon: 2.3522, hint: "Jason Bourne's rooftop chase filmed on location in central Paris and Montmartre." },
-  { film: "The Bourne Ultimatum", year: "2007", city: "Paris, France", lat: 48.8600, lon: 2.3400, hint: "The Waterloo station chase was filmed on location — and Bourne's Paris run through narrow streets." },
-  { film: "Midnight in Paris", year: "2011", city: "Paris, France", lat: 48.8600, lon: 2.3400, hint: "Gil's night runs through Paris filmed on location — the Seine, Montmartre, and the Left Bank." },
+  { film: "Amelie", year: "2001", city: "Paris, France", lat: 48.8842, lon: 2.3470, hint: "Amelie's run through Montmartre filmed entirely on location in the 18th arrondissement." },
+  { film: "Les Miserables", year: "2019", city: "Clichy-sous-Bois, France", lat: 48.9078, lon: 2.5533, hint: "The banlieue chase scenes filmed on location in the real Paris suburbs." },
   { film: "The Tourist", year: "2010", city: "Venice, Italy", lat: 45.4408, lon: 12.3155, hint: "The rooftop chase across Venice filmed on location — real canals, bridges and narrow calli." },
   { film: "Roman Holiday", year: "1953", city: "Rome, Italy", lat: 41.9028, lon: 12.4964, hint: "Audrey Hepburn's run through Rome filmed entirely on location — the Trevi Fountain, Spanish Steps." },
-  { film: "To Rome with Love", year: "2012", city: "Rome, Italy", lat: 41.9100, lon: 12.4900, hint: "Woody Allen's comedy filmed on location across Rome — the Piazza Navona and Trastevere." },
   { film: "Call Me by Your Name", year: "2017", city: "Lombardy, Italy", lat: 45.5231, lon: 10.2095, hint: "Elio's summer runs filmed on location in Crema and the surrounding Lombardy countryside." },
+  { film: "Harry Styles - Golden", year: "2020", city: "Amalfi Coast, Italy", lat: 40.6333, lon: 14.6333, hint: "Harry Styles runs along the Amalfi Coast — filmed on location between Maiori and Minori." },
   { film: "The Third Man", year: "1949", city: "Vienna, Austria", lat: 48.1900, lon: 16.3600, hint: "The famous sewer chase filmed in Vienna's real underground sewer network." },
   { film: "Before Sunrise", year: "1995", city: "Vienna, Austria", lat: 48.2082, lon: 16.3738, hint: "Jesse and Celine's walks and runs through Vienna filmed entirely on location in the city centre." },
   { film: "The Sound of Music", year: "1965", city: "Salzburg, Austria", lat: 47.8095, lon: 13.0550, hint: "Maria's run through the Alpine meadows filmed on location above Salzburg at Werfen." },
   { film: "Mamma Mia", year: "2008", city: "Skopelos, Greece", lat: 39.1200, lon: 23.7200, hint: "Sophie's run down to the harbour filmed on location on the Greek island of Skopelos." },
-  { film: "Zorba the Greek", year: "1964", city: "Crete, Greece", lat: 35.3387, lon: 25.1442, hint: "Filmed on location in Stavros, Crete — the beach scenes are real." },
   { film: "Vicky Cristina Barcelona", year: "2008", city: "Barcelona, Spain", lat: 41.3851, lon: 2.1734, hint: "Filmed on location across Barcelona — the Gothic Quarter and Barceloneta beach." },
   { film: "L'Auberge Espagnole", year: "2002", city: "Barcelona, Spain", lat: 41.3900, lon: 2.1500, hint: "Xavier's run through Barcelona's streets filmed on location in the Eixample and Gothic Quarter." },
-  { film: "Volver", year: "2006", city: "Madrid, Spain", lat: 40.4168, lon: -3.7038, hint: "Filmed on location in La Mancha and Madrid — Pedro Almodovar's home territory." },
-  { film: "The Motorcycle Diaries", year: "2004", city: "Buenos Aires, Argentina", lat: -34.6037, lon: -58.3816, hint: "Che and Alberto's journey began in Buenos Aires — the city streets filmed on location." },
-  { film: "Amelie", year: "2001", city: "Paris, France", lat: 48.8842, lon: 2.3470, hint: "Amelie's run through Montmartre filmed entirely on location in the 18th arrondissement." },
-  { film: "Les Miserables", year: "2019", city: "Clichy-sous-Bois, France", lat: 48.9078, lon: 2.5533, hint: "The banlieue chase scenes filmed on location in the real Paris suburbs." },
-
-  // ── USA ───────────────────────────────────────────────────
   { film: "Rocky", year: "1976", city: "Philadelphia, USA", lat: 39.9656, lon: -75.1810, hint: "Rocky's training run up the Art Museum steps filmed entirely on location in Philadelphia." },
-  { film: "Rocky II-IV training montages", year: "1979-1985", city: "Philadelphia, USA", lat: 39.9500, lon: -75.1500, hint: "Rocky's subsequent training runs filmed on location through the streets of Philadelphia." },
   { film: "Silver Linings Playbook", year: "2012", city: "Philadelphia, USA", lat: 40.0379, lon: -75.2463, hint: "Pat's obsessive training runs through suburban Philadelphia filmed on location in Upper Darby." },
   { film: "Forrest Gump", year: "1994", city: "Savannah, USA", lat: 32.0758, lon: -81.0932, hint: "The bench scenes in Chippewa Square, Savannah. The cross-country run used multiple US locations." },
   { film: "Friends", year: "1994-2004", city: "New York, USA", lat: 40.7812, lon: -73.9665, hint: "Phoebe's iconic freeform run with Rachel filmed on location in Central Park, New York." },
   { film: "Marathon Man", year: "1976", city: "New York, USA", lat: 40.7829, lon: -73.9654, hint: "Dustin Hoffman's training runs filmed on location in Central Park, New York." },
   { film: "Vanilla Sky", year: "2001", city: "New York, USA", lat: 40.7580, lon: -73.9855, hint: "Tom Cruise runs alone through a deserted Times Square — filmed on location at dawn." },
-  { film: "Breakfast at Tiffanys", year: "1961", city: "New York, USA", lat: 40.7614, lon: -73.9776, hint: "Holly Golightly's run through Midtown filmed on location on Fifth Avenue." },
-  { film: "Home Alone 2", year: "1992", city: "New York, USA", lat: 40.7589, lon: -73.9851, hint: "Kevin's run through Midtown Manhattan filmed on location — Central Park and Fifth Avenue." },
-  { film: "Gangs of New York", year: "2002", city: "New York, USA", lat: 40.7060, lon: -74.0088, hint: "Filmed on location in lower Manhattan — the Five Points area recreated in the real neighbourhood." },
-  { film: "The French Connection", year: "1971", city: "New York, USA", lat: 40.6782, lon: -73.9442, hint: "Popeye Doyle's chase through the Brooklyn streets and elevated subway filmed on location." },
+  { film: "The French Connection", year: "1971", city: "New York, USA", lat: 40.6782, lon: -73.9442, hint: "Popeye Doyle's chase through the Brooklyn streets filmed on location." },
+  { film: "Ferris Buellers Day Off", year: "1986", city: "Chicago, USA", lat: 41.8827, lon: -87.6233, hint: "Ferris's frantic run home through Chicago filmed on location — the Art Institute steps and Michigan Avenue." },
   { film: "La La Land", year: "2016", city: "Los Angeles, USA", lat: 34.1184, lon: -118.3004, hint: "Mia and Sebastian's run and dance at Griffith Observatory filmed on location in LA." },
   { film: "Terminator 2", year: "1991", city: "Los Angeles, USA", lat: 34.2244, lon: -118.4134, hint: "The flood control channel motorcycle chase filmed on location in Sun Valley, LA." },
-  { film: "Forrest Gump cross-country", year: "1994", city: "Monument Valley, USA", lat: 36.9837, lon: -110.0983, hint: "Forrest's cross-country run through Monument Valley — one of cinema's most iconic landscapes." },
-  { film: "Thelma and Louise", year: "1991", city: "Utah, USA", lat: 37.2982, lon: -110.0401, hint: "The final drive through the Utah desert — filmed on location near Moab and Monument Valley." },
-  { film: "Gone with the Wind", year: "1939", city: "Atlanta, USA", lat: 33.7490, lon: -84.3880, hint: "Scarlett's run through the burning Atlanta filmed partly on location." },
-  { film: "Jurassic Park", year: "1993", city: "Kauai, Hawaii, USA", lat: 22.0964, lon: -159.5261, hint: "The dinosaur chase scenes filmed on location in Kauai's Na Pali Coast and Allerton Garden." },
+  { film: "Forrest Gump Monument Valley", year: "1994", city: "Monument Valley, USA", lat: 36.9837, lon: -110.0983, hint: "The most famous cross-country running scene — Forrest stops running here in Monument Valley." },
   { film: "The Truman Show", year: "1998", city: "Seaside, Florida, USA", lat: 30.3266, lon: -86.1431, hint: "Truman's frantic run to the edge of his world filmed on location in Seaside, Florida." },
-  { film: "No Country for Old Men", year: "2007", city: "New Mexico, USA", lat: 36.7072, lon: -104.1010, hint: "Llewelyn's run across the Rio Grande filmed on location in the New Mexico desert." },
-  { film: "Ferris Buellers Day Off", year: "1986", city: "Chicago, USA", lat: 41.8827, lon: -87.6233, hint: "Ferris's frantic run home through Chicago filmed on location — the Art Institute steps and Michigan Avenue." },
-  { film: "The Blues Brothers", year: "1980", city: "Chicago, USA", lat: 41.8781, lon: -87.6298, hint: "The spectacular car chases filmed on location through downtown Chicago." },
-  { film: "Whiplash", year: "2014", city: "New York, USA", lat: 40.7549, lon: -73.9840, hint: "Andrew's desperate run to the concert filmed on location near Carnegie Hall." },
-  { film: "Inside Llewyn Davis", year: "2013", city: "New York, USA", lat: 40.7271, lon: -74.0018, hint: "Filmed on location in the Greenwich Village folk scene." },
-  { film: "Do the Right Thing", year: "1989", city: "New York, USA", lat: 40.6782, lon: -73.9300, hint: "Filmed on location on Stuyvesant Avenue in Bed-Stuy, Brooklyn." },
-  { film: "Boyz n the Hood", year: "1991", city: "Los Angeles, USA", lat: 33.9731, lon: -118.2730, hint: "Filmed on location in South Central Los Angeles — Crenshaw Boulevard and Leimert Park." },
   { film: "Napoleon Dynamite", year: "2004", city: "Preston, Idaho, USA", lat: 42.0963, lon: -111.8763, hint: "Napoleon's run home filmed on location in Preston, Idaho." },
-  { film: "Forrest Gump Monument Valley run", year: "1994", city: "Monument Valley, USA", lat: 36.9837, lon: -110.0983, hint: "The most famous cross-country running scene in cinema — Forrest stops running here." },
-
-  // ── CANADA ───────────────────────────────────────────────
   { film: "Scott Pilgrim vs the World", year: "2010", city: "Toronto, Canada", lat: 43.6532, lon: -79.3832, hint: "Scott's runs through Toronto filmed on location — Bloor Street, Spadina and Kensington Market." },
   { film: "Atanarjuat The Fast Runner", year: "2001", city: "Nunavut, Canada", lat: 63.7467, lon: -68.5170, hint: "The extraordinary barefoot sprint across the Arctic ice filmed on location near Igloolik, Nunavut." },
-  { film: "Incendies", year: "2010", city: "Montreal, Canada", lat: 45.5017, lon: -73.5673, hint: "Denis Villeneuve's film shot on location in Montreal and Jordan." },
-
-  // ── LATIN AMERICA ────────────────────────────────────────
   { film: "City of God", year: "2002", city: "Rio de Janeiro, Brazil", lat: -22.9068, lon: -43.1729, hint: "The chase through the Cidade de Deus favela filmed on location in the real Rio favela." },
-  { film: "The Motorcycle Diaries", year: "2004", city: "Buenos Aires, Argentina", lat: -34.6037, lon: -58.3816, hint: "Che and Alberto's journey filmed on location across South America." },
   { film: "Roma", year: "2018", city: "Mexico City, Mexico", lat: 19.4162, lon: -99.1648, hint: "Alfonso Cuaron's film shot entirely on location in the Colonia Roma neighbourhood of Mexico City." },
   { film: "Amores Perros", year: "2000", city: "Mexico City, Mexico", lat: 19.4326, lon: -99.1332, hint: "The desperate street run and crash filmed on location in central Mexico City." },
-  { film: "Y Tu Mama Tambien", year: "2001", city: "Oaxaca, Mexico", lat: 16.8531, lon: -96.7266, hint: "The road trip filming locations span across real Mexican towns and beaches." },
   { film: "Elite Squad", year: "2007", city: "Rio de Janeiro, Brazil", lat: -22.8700, lon: -43.2500, hint: "BOPE's run through the favela filmed on location in Morro da Providencia, Rio de Janeiro." },
-
-  // ── ASIA ─────────────────────────────────────────────────
   { film: "Lost in Translation", year: "2003", city: "Tokyo, Japan", lat: 35.6762, lon: 139.6503, hint: "Bob and Charlotte's nighttime run through Shibuya filmed on location in Tokyo." },
-  { film: "Spirited Away", year: "2001", city: "Tokyo, Japan", lat: 35.6580, lon: 139.7016, hint: "The bathhouse and spirit world were inspired by the Edo-Tokyo Open Air Architectural Museum." },
-  { film: "Crouching Tiger Hidden Dragon", year: "2000", city: "Beijing, China", lat: 40.4319, lon: 116.5704, hint: "Filmed on location at the Forbidden City and across China — rooftop chase through Peking." },
-  { film: "Hero", year: "2002", city: "Zhangye, China", lat: 38.9358, lon: 100.4550, hint: "Zhang Yimou's epic filmed on location across China — the Danxia landforms and ancient lakes." },
-  { film: "Slumdog Millionaire", year: "2008", city: "Mumbai, India", lat: 19.0760, lon: 72.8777, hint: "The opening chase through the Dharavi slum filmed on location in Mumbai." },
-  { film: "Dil Dhadakne Do", year: "2015", city: "Mumbai, India", lat: 19.0596, lon: 72.8295, hint: "Filmed on location across Mumbai — Bandra and Marine Drive." },
   { film: "Oldboy", year: "2003", city: "Seoul, South Korea", lat: 37.5665, lon: 126.9780, hint: "Oh Dae-su's corridor fight and run filmed on location in Seoul." },
-  { film: "Parasite", year: "2019", city: "Seoul, South Korea", lat: 37.5260, lon: 126.9900, hint: "The Ki-woo family's desperate run through flooding streets filmed on location in Seoul's hillside neighbourhoods." },
+  { film: "Parasite", year: "2019", city: "Seoul, South Korea", lat: 37.5260, lon: 126.9900, hint: "The Ki-woo family's desperate run through flooding streets filmed on location in Seoul." },
   { film: "Train to Busan", year: "2016", city: "Busan, South Korea", lat: 35.1796, lon: 129.0756, hint: "The frantic run through Busan station filmed on location in South Korea." },
+  { film: "Slumdog Millionaire", year: "2008", city: "Mumbai, India", lat: 19.0760, lon: 72.8777, hint: "The opening chase through the Dharavi slum filmed on location in Mumbai." },
+  { film: "Crouching Tiger Hidden Dragon", year: "2000", city: "Beijing, China", lat: 40.4319, lon: 116.5704, hint: "Filmed on location at the Forbidden City and across China — rooftop chase through Peking." },
   { film: "Infernal Affairs", year: "2002", city: "Hong Kong", lat: 22.3193, lon: 114.1694, hint: "The rooftop chase filmed on location in Hong Kong's Central district." },
-  { film: "In the Mood for Love", year: "2000", city: "Hong Kong", lat: 22.2800, lon: 114.1600, hint: "Tony Leung's slow walk and run filmed in the narrow streets of old Hong Kong." },
-  { film: "Chungking Express", year: "1994", city: "Hong Kong", lat: 22.3180, lon: 114.1680, hint: "Cop 223's run through Hong Kong's Chungking Mansions and Lan Kwai Fong filmed on location." },
-
-  // ── MIDDLE EAST & AFRICA ─────────────────────────────────
-  { film: "Black Hawk Down", year: "2001", city: "Rabat, Morocco", lat: 33.9716, lon: -6.8498, hint: "The Mogadishu street battle filmed on location in Sale, Morocco — the streets dressed as Somalia." },
-  { film: "The Gladiator", year: "2000", city: "Ouarzazate, Morocco", lat: 30.9189, lon: -6.8936, hint: "Maximus's run through the Roman arena filmed on location in Ouarzazate, Morocco." },
+  { film: "Chungking Express", year: "1994", city: "Hong Kong", lat: 22.3180, lon: 114.1680, hint: "Cop 223's run through Chungking Mansions and Lan Kwai Fong filmed on location." },
+  { film: "Black Hawk Down", year: "2001", city: "Rabat, Morocco", lat: 33.9716, lon: -6.8498, hint: "The Mogadishu street battle filmed on location in Sale, Morocco." },
   { film: "Lawrence of Arabia", year: "1962", city: "Wadi Rum, Jordan", lat: 29.5727, lon: 35.4204, hint: "Lawrence's run through the desert filmed on location in Wadi Rum, Jordan." },
-  { film: "The English Patient", year: "1996", city: "Tunisia", lat: 33.8869, lon: 9.5375, hint: "Count Almasy's desert run filmed on location in the Tunisian Sahara." },
   { film: "Mad Max Fury Road", year: "2015", city: "Namib Desert, Namibia", lat: -22.9576, lon: 18.4904, hint: "Filmed in the Namib Desert — one of the most remote filming locations in cinema history." },
   { film: "District 9", year: "2009", city: "Johannesburg, South Africa", lat: -26.2041, lon: 28.0473, hint: "Wikus's run through the Soweto township filmed on location in Johannesburg." },
-  { film: "Blood Diamond", year: "2006", city: "Mozambique", lat: -18.6657, lon: 35.5296, hint: "Danny Archer's run through the bush filmed on location in Mozambique." },
-
-  // ── AUSTRALIA & NEW ZEALAND ──────────────────────────────
   { film: "Gallipoli", year: "1981", city: "Perth, Australia", lat: -31.9505, lon: 115.8605, hint: "Archy's sprint across the Western Australian outback filmed on location near Fremantle." },
-  { film: "Mad Max", year: "1979", city: "Victoria, Australia", lat: -37.8136, lon: 144.9631, hint: "The original road chase filmed on location on the Princes Highway in Victoria." },
-  { film: "Crocodile Dundee", year: "1986", city: "Sydney, Australia", lat: -33.8688, lon: 151.2093, hint: "Mick Dundee's run through New York and the Outback — the Outback scenes filmed in Winton, Queensland." },
   { film: "The Piano", year: "1993", city: "Karekare, New Zealand", lat: -37.0100, lon: 174.4700, hint: "Ada's run across Karekare beach filmed on location on the wild west coast of New Zealand." },
   { film: "Lord of the Rings", year: "2001-2003", city: "Matamata, New Zealand", lat: -37.8700, lon: 175.7600, hint: "The Shire scenes filmed on location in Matamata. Frodo and Sam's run across the fields." },
   { film: "Hunt for the Wilderpeople", year: "2016", city: "Auckland, New Zealand", lat: -36.8485, lon: 174.7633, hint: "Ricky and Hec's run through the New Zealand bush filmed on location in the Waitakere Ranges." },
-
-  // ── MUSIC VIDEOS ─────────────────────────────────────────
-  { film: "Harry Styles - Golden", year: "2020", city: "Amalfi Coast, Italy", lat: 40.6333, lon: 14.6333, hint: "Harry Styles runs along the Amalfi Coast — filmed on location between Maiori and Minori." },
-  { film: "Robbie Williams - Feel", year: "2002", city: "Los Angeles, USA", lat: 34.0737, lon: -118.4000, hint: "Filmed on location at the Greystone Mansion in Beverly Hills." },
-  { film: "Eminem - Lose Yourself", year: "2002", city: "Detroit, USA", lat: 42.3314, lon: -83.0458, hint: "Filmed on location in Detroit — the city that made Eminem." },
-  { film: "Kanye West - Heard Em Say", year: "2005", city: "New York, USA", lat: 40.7831, lon: -73.9712, hint: "Filmed on location in Central Park, New York." },
-  { film: "Taylor Swift - Style", year: "2015", city: "Los Angeles, USA", lat: 34.0195, lon: -118.4912, hint: "Filmed on the cliffs above the Pacific Ocean in Malibu, Los Angeles." },
   { film: "Sigur Ros - Hoppipolla", year: "2005", city: "Reykjavik, Iceland", lat: 64.1355, lon: -21.8954, hint: "Filmed on location in Iceland — elderly people running joyfully across the Icelandic landscape." },
-
+  { film: "Eminem - Lose Yourself", year: "2002", city: "Detroit, USA", lat: 42.3314, lon: -83.0458, hint: "Filmed on location in Detroit — the city that made Eminem." },
 ];
 
 function haversine(lat1, lon1, lat2, lon2) {
@@ -156,15 +95,52 @@ export default async function handler(req, res) {
 
   const coordMatch = query.match(/^(-?\d+\.?\d*),\s*(-?\d+\.?\d*)\s+radius:(.+?)(?:\s+Do NOT|$)/i);
   const isLocationQuery = !!coordMatch;
+  const isLocationSearch = query.startsWith('LOCATION_SEARCH:');
 
-  // Debug log — visible in Vercel function logs
   console.log('QUERY:', JSON.stringify(query));
   console.log('IS LOCATION QUERY:', isLocationQuery);
-  console.log('COORD MATCH:', coordMatch ? [coordMatch[1], coordMatch[2], coordMatch[3]] : null);
+  console.log('IS LOCATION SEARCH:', isLocationSearch);
 
   let prompt;
 
-  if (isLocationQuery) {
+  if (isLocationSearch) {
+    const location = query.replace('LOCATION_SEARCH:', '').trim();
+    prompt = `You are a route planning assistant for "Run With The Stars".
+
+The user has entered this location: "${location}"
+
+Find the single most famous, well-documented running scene from any film, TV show or music video that is publicly known to have been filmed on location at or near ${location}.
+
+STRICT RULES:
+- Only suggest something you are certain about. Do not guess or invent filming locations.
+- The scene must have been PHYSICALLY FILMED at or near ${location} — not just set there.
+- If you are not confident, return an error. Do not hallucinate.
+- All waypoints must be real places with accurate GPS coordinates.
+
+Return ONLY valid JSON:
+
+{
+  "name": "Short characterful name with personality",
+  "source": "Film/Show/Artist name and year",
+  "loc": "City, Country",
+  "dist": "distance in KM e.g. 5.1KM",
+  "elev": "elevation gain e.g. 42M",
+  "time": "estimated run time e.g. 28 MIN",
+  "lat": central latitude as number,
+  "lon": central longitude as number,
+  "note": "One or two sentences about what makes this run special",
+  "waypoints": [
+    { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude, "cls": "start" },
+    { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude },
+    { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude },
+    { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude },
+    { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude, "cls": "end" }
+  ]
+}
+
+If not confident, return: { "error": "No verified iconic running scene found near ${location}. Try a larger city or well-known filming destination." }`;
+
+  } else if (isLocationQuery) {
     const userLat = parseFloat(coordMatch[1]);
     const userLon = parseFloat(coordMatch[2]);
     const excludeMatch = query.match(/Do NOT suggest any of these already shown: (.+)/);
@@ -190,7 +166,7 @@ Distance from user: approximately ${distanceKm}km
 
 Create 5 real waypoints in ${nearest.city} that trace a route through the actual filming locations. Use accurate GPS coordinates for real streets and landmarks.
 
-Return ONLY valid JSON, no other text:
+Return ONLY valid JSON:
 
 {
   "name": "A short characterful name for this run with personality",
@@ -212,16 +188,16 @@ Return ONLY valid JSON, no other text:
 }`;
 
   } else {
-    prompt = `You are a route planning assistant for "Run With The Stars" — a site that finds iconic running scenes from films, TV shows and music videos and turns them into real walkable routes.
+    prompt = `You are a route planning assistant for "Run With The Stars".
 
 The user searched for: "${query}"
 
 Find the most iconic running scene from this film, TV show, or music video. Return waypoints based on where it was ACTUALLY FILMED. Use accurate real-world GPS coordinates.
 
-Return ONLY a valid JSON object, no other text:
+Return ONLY valid JSON:
 
 {
-  "name": "Short characterful name with personality (e.g. Phoebe Runs Weird, Run Forest Run!)",
+  "name": "Short characterful name with personality",
   "source": "Film/Show/Artist name and year",
   "loc": "City, Country",
   "dist": "distance in KM e.g. 5.1KM",
@@ -229,7 +205,7 @@ Return ONLY a valid JSON object, no other text:
   "time": "estimated run time e.g. 28 MIN",
   "lat": central latitude as number,
   "lon": central longitude as number,
-  "note": "One or two sentences of character about what makes this run special",
+  "note": "One or two sentences about what makes this run special",
   "waypoints": [
     { "n": "Location name", "d": "Brief description", "lat": latitude, "lon": longitude, "cls": "start" },
     { "n": "Location name", "d": "Brief description", "lat": latitude, "lon": longitude },
@@ -239,7 +215,7 @@ Return ONLY a valid JSON object, no other text:
   ]
 }
 
-If you cannot identify a genuine running scene, return: { "error": "No iconic running scene found for this title. Try another film, show or music video." }`;
+If no genuine running scene exists for this query: { "error": "No iconic running scene found for this title. Try another film, show or music video." }`;
   }
 
   try {
