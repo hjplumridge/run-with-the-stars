@@ -15,7 +15,6 @@ body { font-family: 'Barlow Condensed', sans-serif; color: var(--lime); position
 .site { position: relative; z-index: 1; min-height: 100vh; }
 .hero { display: flex; flex-direction: column; align-items: center; padding: 56px 24px 48px; text-align: center; }
 .runner-outer { width: 100%; display: flex; justify-content: center; margin-bottom: 32px; }
-.runner-svg { width: 300px; height: auto; }
 h1 { font-size: clamp(28px, 5.5vw, 64px); font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.0; color: var(--lime); max-width: 760px; margin-bottom: 20px; }
 .sub { font-size: clamp(15px, 2vw, 20px); font-weight: 400; line-height: 1.6; color: var(--lime-mid); max-width: 560px; margin-bottom: 36px; }
 .search-wrap { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 0; }
@@ -86,8 +85,8 @@ footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; l
 </head>
 <body>
 <div id="loading-overlay">
-  <div class="loading-star">★</div>
-  <div class="loading-text">Just limbering up…</div>
+  <div class="loading-star">&#9733;</div>
+  <div class="loading-text">Just limbering up...</div>
   <div class="loading-sub">Finding the route</div>
 </div>
 <canvas id="night-bg"></canvas>
@@ -100,7 +99,7 @@ footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; l
     <p class="sub fu fu3">Every iconic run from pop culture has a real location. Find it, get the Google Maps route, and run, Forest, run!</p>
     <div class="search-wrap fu fu4">
       <div class="search-row">
-        <input class="search-input" id="q" placeholder="Enter a film, TV show, or music video…"/>
+        <input class="search-input" id="q" placeholder="Enter a film, TV show, or music video..."/>
         <button class="search-btn" onclick="doSearch()">Find Route</button>
       </div>
       <button class="nearest-btn" id="nb" onclick="findNearest()">
@@ -113,37 +112,37 @@ footer { text-align: center; padding: 24px; font-size: 10px; font-weight: 400; l
     <div class="fp-track" id="fp-track"></div>
   </div>
   <div id="detail"><div id="detail-inner"></div></div>
-  <footer>Run With The Stars &nbsp;·&nbsp; Iconic scenes. Real routes. Your legs.</footer>
+  <footer>Run With The Stars &nbsp;&#183;&nbsp; Iconic scenes. Real routes. Your legs.</footer>
 </div>
 <div id="toast"></div>
 <script>
 (function(){
-  const cv=document.getElementById('night-bg'),cx=cv.getContext('2d');
+  var cv=document.getElementById('night-bg'),cx=cv.getContext('2d');
   function paint(){
-    const W=cv.width=window.innerWidth,H=cv.height=window.innerHeight;
-    const sky=cx.createLinearGradient(0,0,0,H);
+    var W=cv.width=window.innerWidth,H=cv.height=window.innerHeight;
+    var sky=cx.createLinearGradient(0,0,0,H);
     sky.addColorStop(0,'#050608');sky.addColorStop(0.45,'#07090e');sky.addColorStop(0.72,'#0a0c0a');sky.addColorStop(1,'#060806');
     cx.fillStyle=sky;cx.fillRect(0,0,W,H);
-    const rng=function(s){let x=s;return function(){x=Math.sin(x*127.1+311.7)*43758.5;return x-Math.floor(x);};};
-    const r=rng(42);
-    for(let i=0;i<180;i++){const sx=r()*W,sy=r()*H*0.65,sr=r()<0.07?1.2:0.5;cx.globalAlpha=0.15+r()*0.55;cx.beginPath();cx.arc(sx,sy,sr,0,Math.PI*2);cx.fill();}
+    var rng=function(s){var x=s;return function(){x=Math.sin(x*127.1+311.7)*43758.5;return x-Math.floor(x);};};
+    var r=rng(42);
+    for(var i=0;i<180;i++){var sx=r()*W,sy=r()*H*0.65,sr=r()<0.07?1.2:0.5;cx.globalAlpha=0.15+r()*0.55;cx.beginPath();cx.arc(sx,sy,sr,0,Math.PI*2);cx.fill();}
     cx.globalAlpha=1;
-    const gnd=cx.createLinearGradient(0,H*0.74,0,H);
+    var gnd=cx.createLinearGradient(0,H*0.74,0,H);
     gnd.addColorStop(0,'rgba(12,14,10,0.9)');gnd.addColorStop(1,'rgba(6,8,5,1)');
     cx.fillStyle=gnd;cx.fillRect(0,H*0.74,W,H*0.26);
     cx.strokeStyle='rgba(200,255,0,0.04)';cx.lineWidth=1;cx.beginPath();cx.moveTo(0,H*0.74);cx.lineTo(W,H*0.74);cx.stroke();
-    const vig=cx.createRadialGradient(W/2,H/2,H*0.08,W/2,H/2,H*0.82);
+    var vig=cx.createRadialGradient(W/2,H/2,H*0.08,W/2,H/2,H*0.82);
     vig.addColorStop(0,'transparent');vig.addColorStop(1,'rgba(0,0,0,0.78)');
     cx.fillStyle=vig;cx.fillRect(0,0,W,H);
-    const id=cx.createImageData(W,H),d=id.data,rg=rng(17);
-    for(let i=0;i<d.length;i+=4){const v=rg()*32-16;d[i]=d[i+1]=d[i+2]=128+v;d[i+3]=Math.floor(rg()*16);}
+    var id=cx.createImageData(W,H),d=id.data,rg=rng(17);
+    for(var i=0;i<d.length;i+=4){var v=rg()*32-16;d[i]=d[i+1]=d[i+2]=128+v;d[i+3]=Math.floor(rg()*16);}
     cx.putImageData(id,0,0);
   }
   paint();
   window.addEventListener('resize',function(){clearTimeout(window._rp);window._rp=setTimeout(paint,120);});
 })();
 
-const ROUTES=[
+var ROUTES=[
   {id:0,name:"Rocky's Training Run",source:"Rocky (1976)",loc:"Philadelphia, PA",dist:"5.1KM",elev:"62M",time:"28 MIN",lat:39.9656,lon:-75.1810,note:"Run at dawn. The 72 museum steps are steeper than they look on screen.",waypoints:[{n:"Eastern State Penitentiary",d:"Start at dawn.",lat:39.9753,lon:-75.1724,cls:"start"},{n:"Fairmount Ave",d:"West through the neighbourhood.",lat:39.9700,lon:-75.1770},{n:"Kelly Drive",d:"South along the Schuylkill River.",lat:39.9680,lon:-75.1800},{n:"Eakins Oval",d:"Past the fountain.",lat:39.9660,lon:-75.1810},{n:"Philadelphia Museum of Art",d:"Climb the 72 steps. Arms up.",lat:39.9656,lon:-75.1810,cls:"end"}]},
   {id:1,name:"Phoebe Runs Weird",source:"Friends (1994-2004)",loc:"Central Park, New York",dist:"5.2KM",elev:"28M",time:"29 MIN",lat:40.7812,lon:-73.9665,note:"Arms out. No technique. Full Phoebe energy. Non-negotiable.",waypoints:[{n:"Tavern on the Green",d:"Start. Arms out immediately.",lat:40.7767,lon:-73.9810,cls:"start"},{n:"The Mall",d:"South under the elm canopy.",lat:40.7718,lon:-73.9734},{n:"Bethesda Fountain",d:"The centrepiece. Keep running.",lat:40.7734,lon:-73.9712},{n:"The Reservoir",d:"Lap the Jackie Kennedy path.",lat:40.7856,lon:-73.9640},{n:"Tavern on the Green",d:"Full loop. You made it.",lat:40.7767,lon:-73.9810,cls:"end"}]},
   {id:2,name:"Run, Forest, Run!",source:"Forrest Gump (1994)",loc:"Savannah, GA",dist:"5.0KM",elev:"14M",time:"28 MIN",lat:32.0758,lon:-81.0932,note:"The bench is in the museum now. But the square is unchanged. Mama would approve.",waypoints:[{n:"Chippewa Square",d:"Where Forrest told his story.",lat:32.0758,lon:-81.0932,cls:"start"},{n:"Forsyth Park",d:"South to the grand fountain.",lat:32.0680,lon:-81.0962},{n:"Bull Street South",d:"Down the oak-lined boulevard.",lat:32.0640,lon:-81.0950},{n:"Savannah History Museum",d:"Where the real bench lives.",lat:32.0810,lon:-81.0990},{n:"Chippewa Square",d:"Back to the start. Life is short.",lat:32.0758,lon:-81.0932,cls:"end"}]},
@@ -152,13 +151,13 @@ const ROUTES=[
 ];
 
 function buildMapsURL(route){
-  const w=route.waypoints,origin=w[0].lat+','+w[0].lon,dest=w[w.length-1].lat+','+w[w.length-1].lon;
-  const mid=w.slice(1,-1).map(function(p){return p.lat+','+p.lon;}).join('|');
+  var w=route.waypoints,origin=w[0].lat+','+w[0].lon,dest=w[w.length-1].lat+','+w[w.length-1].lon;
+  var mid=w.slice(1,-1).map(function(p){return p.lat+','+p.lon;}).join('|');
   return 'https://www.google.com/maps/dir/?api=1&travelmode=walking&origin='+origin+'&destination='+dest+(mid?'&waypoints='+encodeURIComponent(mid):'');
 }
 
 function footprintSVG(active){
-  const s=active?'#c8ff00':'rgba(200,255,0,0.45)';
+  var s=active?'#c8ff00':'rgba(200,255,0,0.45)';
   return '<svg viewBox="0 0 110 200" xmlns="http://www.w3.org/2000/svg" style="width:110px;height:200px;display:block;"><path d="M 55 192 C 32 192 18 174 16 154 C 14 136 20 118 22 100 C 24 82 20 66 22 50 C 24 34 32 18 46 10 C 52 7 60 6 66 9 C 76 14 80 28 80 42 C 80 56 74 68 74 82 C 74 96 80 112 82 130 C 84 150 90 168 86 180 C 82 192 68 194 55 192 Z" stroke="'+s+'" fill="none" stroke-width="1.5"/><ellipse cx="44" cy="7" rx="9" ry="11" stroke="'+s+'" fill="none" stroke-width="1.5"/><ellipse cx="58" cy="4" rx="7" ry="9" stroke="'+s+'" fill="none" stroke-width="1.5"/><ellipse cx="70" cy="6" rx="6" ry="8" stroke="'+s+'" fill="none" stroke-width="1.5"/><ellipse cx="79" cy="13" rx="5" ry="7" stroke="'+s+'" fill="none" stroke-width="1.5"/><ellipse cx="86" cy="23" rx="4.5" ry="6" stroke="'+s+'" fill="none" stroke-width="1.5"/></svg>';
 }
 
@@ -169,17 +168,17 @@ function renderCards(){
 }
 
 function showRoute(id,banner){
-  const r=ROUTES.find(function(x){return x.id===id;})||ROUTES[0];
-  const url=buildMapsURL(r);
+  var r=ROUTES.find(function(x){return x.id===id;})||ROUTES[0];
+  var url=buildMapsURL(r);
   document.querySelectorAll('.fp-card').forEach(function(c){c.classList.remove('active');});
-  const fp=document.getElementById('fp-'+id);
+  var fp=document.getElementById('fp-'+id);
   if(fp)fp.classList.add('active');
-  const wpsHTML=r.waypoints.map(function(w,i,arr){
-    const last=i===arr.length-1;
+  var wpsHTML=r.waypoints.map(function(w,i,arr){
+    var last=i===arr.length-1;
     return '<div class="d-wp"><div class="d-wp-col"><div class="d-dot '+(w.cls||'')+' '+(last&&!w.cls?'end':'')+'"></div>'+(last?'':'<div class="d-line"></div>')+'</div><div class="d-wp-text"><div class="d-wp-name">'+w.n+'</div><div class="d-wp-desc">'+w.d+'</div></div></div>';
   }).join('');
-  document.getElementById('detail-inner').innerHTML=(banner?'<div class="found-msg">'+banner+'</div>':'')+'<div class="detail-box"><div class="d-tag">'+r.source+'</div><div class="d-name">'+r.name+'</div><div class="d-stats"><div class="d-stat"><div class="d-stat-val">'+r.dist+'</div><div class="d-stat-lbl">Distance</div></div><div class="d-stat"><div class="d-stat-val">'+r.elev+'</div><div class="d-stat-lbl">Elevation</div></div><div class="d-stat"><div class="d-stat-val">'+r.time+'</div><div class="d-stat-lbl">Est. time</div></div></div><div class="d-wps-label">Route Waypoints</div><div class="d-wps">'+wpsHTML+'</div><a class="maps-cta" href="'+url+'" target="_blank" rel="noopener"><div><div class="maps-cta-label">Open in Google Maps</div><div class="maps-cta-sub">Walking · '+r.waypoints.length+' stops · opens Maps app on mobile</div></div><div class="maps-cta-arrow">&#x2197;</div></a><button class="copy-cta" onclick="copyLink(\''+url+'\')">Copy Maps link</button>'+(r.note?'<p style="margin-top:16px;font-size:12px;font-weight:300;font-style:italic;color:rgba(200,255,0,0.4);line-height:1.65;">'+r.note+'</p>':'')+'</div>';
-  const sec=document.getElementById('detail');
+  document.getElementById('detail-inner').innerHTML=(banner?'<div class="found-msg">'+banner+'</div>':'')+'<div class="detail-box"><div class="d-tag">'+r.source+'</div><div class="d-name">'+r.name+'</div><div class="d-stats"><div class="d-stat"><div class="d-stat-val">'+r.dist+'</div><div class="d-stat-lbl">Distance</div></div><div class="d-stat"><div class="d-stat-val">'+r.elev+'</div><div class="d-stat-lbl">Elevation</div></div><div class="d-stat"><div class="d-stat-val">'+r.time+'</div><div class="d-stat-lbl">Est. time</div></div></div><div class="d-wps-label">Route Waypoints</div><div class="d-wps">'+wpsHTML+'</div><a class="maps-cta" href="'+url+'" target="_blank" rel="noopener"><div><div class="maps-cta-label">Open in Google Maps</div><div class="maps-cta-sub">Walking &middot; '+r.waypoints.length+' stops &middot; opens Maps app on mobile</div></div><div class="maps-cta-arrow">&#x2197;</div></a><button class="copy-cta" onclick="copyLink(\''+url+'\')">Copy Maps link</button>'+(r.note?'<p style="margin-top:16px;font-size:12px;font-weight:300;font-style:italic;color:rgba(200,255,0,0.4);line-height:1.65;">'+r.note+'</p>':'')+'</div>';
+  var sec=document.getElementById('detail');
   sec.classList.add('visible');
   setTimeout(function(){sec.scrollIntoView({behavior:'smooth',block:'start'});},80);
 }
@@ -191,49 +190,67 @@ function showLoading(sub){
 function hideLoading(){document.getElementById('loading-overlay').classList.remove('show');}
 
 function haversine(lat1,lon1,lat2,lon2){
-  const R=6371,dLat=(lat2-lat1)*Math.PI/180,dLon=(lon2-lon1)*Math.PI/180;
-  const a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
+  var R=6371,dLat=(lat2-lat1)*Math.PI/180,dLon=(lon2-lon1)*Math.PI/180;
+  var a=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)*Math.sin(dLon/2);
   return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 }
 
 async function fetchRoute(query){
-  const res=await fetch('/api/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:query})});
-  const data=await res.json();
+  var res=await fetch('/api/search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:query})});
+  var data=await res.json();
   if(!res.ok||data.error)throw new Error(data.error||'Could not find a route for that.');
-  const route=Object.assign({},data.route,{id:99});
-  const existing=ROUTES.findIndex(function(r){return r.id===99;});
+  var route=Object.assign({},data.route,{id:99});
+  var existing=ROUTES.findIndex(function(r){return r.id===99;});
   if(existing>=0)ROUTES.splice(existing,1);
   ROUTES.push(route);
   return route;
 }
 
+var _nearestLat=null,_nearestLon=null,_nearestAttempt=0,_nearestExclude=[];
+
 function findNearest(){
   if(!navigator.geolocation){alert('Location access is not available in your browser.');return;}
-  const lbl=document.getElementById('nb-lbl');
-  lbl.innerHTML='<span class="spin">&#9675;</span> Detecting your location...';
-  navigator.geolocation.getCurrentPosition(function(pos){
-    const lat=pos.coords.latitude,lon=pos.coords.longitude;
-    showLoading('Finding the nearest iconic route to you');
-    const query='The user is at coordinates '+lat.toFixed(3)+', '+lon.toFixed(3)+'. Find the most iconic running scene from any film, TV show or music video whose actual filming location is geographically closest to these coordinates. Do not just pick the most famous running film - calculate which filming location is nearest to '+lat.toFixed(3)+', '+lon.toFixed(3)+' and pick that one. Return accurate GPS coordinates for the real filming locations.';
-    fetchRoute(query).then(function(route){
-      lbl.textContent='Found near you - '+route.name;
-      showRoute(99,'Nearest iconic route to you: '+route.name+' ('+route.source+') - '+route.loc);
-    }).catch(function(){
+  if(_nearestAttempt===0){
+    var lbl=document.getElementById('nb-lbl');
+    lbl.innerHTML='<span class="spin">&#9675;</span> Detecting your location...';
+    navigator.geolocation.getCurrentPosition(function(pos){
+      _nearestLat=pos.coords.latitude;
+      _nearestLon=pos.coords.longitude;
+      runNearestSearch();
+    },function(){
       lbl.textContent='Find my nearest iconic route';
-      let best=ROUTES[0],bestD=Infinity;
-      ROUTES.forEach(function(r){const d=haversine(lat,lon,r.lat,r.lon);if(d<bestD){bestD=d;best=r;}});
-      showRoute(best.id,'Nearest route to you: '+best.name+' ('+best.source+') - '+best.loc);
-    }).finally(function(){hideLoading();});
-  },function(){
-    lbl.textContent='Find my nearest iconic route';
-    alert('Location access denied - please enable permissions and try again.');
-  });
+      alert('Location access denied - please enable permissions and try again.');
+    });
+  } else {
+    runNearestSearch();
+  }
+}
+
+function runNearestSearch(){
+  var lbl=document.getElementById('nb-lbl');
+  _nearestAttempt++;
+  var radii=['within 50km','within 150km','within 500km','anywhere in the same country as','anywhere in the world near'];
+  var radius=radii[Math.min(_nearestAttempt-1,radii.length-1)];
+  var excludeText=_nearestExclude.length>0?' Do NOT suggest any of these already shown: '+_nearestExclude.join(', '):'';
+  lbl.innerHTML='<span class="spin">&#9675;</span> Scanning '+radius+' you...';
+  showLoading('Scanning '+radius+' you...');
+  var query=_nearestLat.toFixed(3)+', '+_nearestLon.toFixed(3)+' radius:'+radius+excludeText;
+  fetchRoute(query).then(function(route){
+    _nearestExclude.push(route.source);
+    showRoute(99,'Found '+radius+' you: '+route.name+' ('+route.source+')');
+    lbl.innerHTML='&#10006; Too far away. Find me another.';
+  }).catch(function(){
+    var best=ROUTES[0],bestD=Infinity;
+    ROUTES.forEach(function(r){var d=haversine(_nearestLat,_nearestLon,r.lat,r.lon);if(d<bestD){bestD=d;best=r;}});
+    showRoute(best.id,'Nearest featured route to you: '+best.name);
+    lbl.innerHTML='&#10006; Too far away. Find me another.';
+  }).finally(function(){hideLoading();});
 }
 
 async function doSearch(){
-  const q=document.getElementById('q').value.trim();
+  var q=document.getElementById('q').value.trim();
   if(!q)return;
-  const m=ROUTES.find(function(r){return r.name.toLowerCase().indexOf(q.toLowerCase())>=0||r.source.toLowerCase().indexOf(q.toLowerCase())>=0;});
+  var m=ROUTES.find(function(r){return r.name.toLowerCase().indexOf(q.toLowerCase())>=0||r.source.toLowerCase().indexOf(q.toLowerCase())>=0;});
   if(m){showRoute(m.id);return;}
   showLoading('Finding the route');
   try{await fetchRoute(q);showRoute(99);}
@@ -244,7 +261,7 @@ document.getElementById('q').addEventListener('keydown',function(e){if(e.key==='
 
 function copyLink(url){
   navigator.clipboard.writeText(url).then(function(){
-    const t=document.getElementById('toast');
+    var t=document.getElementById('toast');
     t.textContent='Maps link copied';
     t.classList.add('show');
     setTimeout(function(){t.classList.remove('show');},2200);
@@ -254,57 +271,57 @@ function copyLink(url){
 renderCards();
 
 (function(){
-  const cv=document.getElementById('hero-canvas'),ctx=cv.getContext('2d');
-  const LIME='#c8ff00',LIME_DIM='rgba(200,255,0,0.2)',LIME_FAINT='rgba(200,255,0,0.06)';
-  function resize(){const W=Math.min(cv.parentElement.clientWidth||340,340);cv.width=W;cv.height=Math.round(W*0.6);}
+  var cv=document.getElementById('hero-canvas'),ctx=cv.getContext('2d');
+  var LIME='#c8ff00',LIME_DIM='rgba(200,255,0,0.2)',LIME_FAINT='rgba(200,255,0,0.06)';
+  function resize(){var W=Math.min(cv.parentElement.clientWidth||340,340);cv.width=W;cv.height=Math.round(W*0.6);}
   resize();
   window.addEventListener('resize',function(){resize();progress=0;});
   function pts(){
-    const W=cv.width,H=cv.height,cx=0.5,cy=0.52,R=0.26,r=R*0.42,n=5,points=[];
-    for(let i=0;i<n*2;i++){
-      const angle=(i*Math.PI/n)-Math.PI/2,radius=i%2===0?R:r;
+    var W=cv.width,H=cv.height,cx=0.5,cy=0.52,R=0.26,r=R*0.42,n=5,points=[];
+    for(var i=0;i<n*2;i++){
+      var angle=(i*Math.PI/n)-Math.PI/2,radius=i%2===0?R:r;
       points.push([(cx+Math.cos(angle)*radius*(H/W))*W,(cy+Math.sin(angle)*radius)*H]);
     }
     points.push(points[0]);
     return points;
   }
-  const LABELS=[{t:0.00,text:'START'},{t:0.20,text:'1.0 KM'},{t:0.40,text:'2.1 KM'},{t:0.60,text:'3.1 KM'},{t:0.80,text:'4.2 KM'},{t:1.00,text:'5.1 KM'}];
+  var LABELS=[{t:0.00,text:'START'},{t:0.20,text:'1.0 KM'},{t:0.40,text:'2.1 KM'},{t:0.60,text:'3.1 KM'},{t:0.80,text:'4.2 KM'},{t:1.00,text:'5.1 KM'}];
   function interpolate(points,t){
     if(t<=0)return[points[0][0],points[0][1]];
     if(t>=1)return[points[points.length-1][0],points[points.length-1][1]];
-    const seg=t*(points.length-1),i=Math.floor(seg),f=seg-i,a=points[i],b=points[Math.min(i+1,points.length-1)];
+    var seg=t*(points.length-1),i=Math.floor(seg),f=seg-i,a=points[i],b=points[Math.min(i+1,points.length-1)];
     return[a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];
   }
-  function drawPath(points){ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);for(let i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);}
-  let progress=0,pulse=0,loopTimer=null;
+  function drawPath(points){ctx.beginPath();ctx.moveTo(points[0][0],points[0][1]);for(var i=1;i<points.length;i++)ctx.lineTo(points[i][0],points[i][1]);}
+  var progress=0,pulse=0,loopTimer=null;
   function draw(){
-    const W=cv.width,H=cv.height;
+    var W=cv.width,H=cv.height;
     ctx.clearRect(0,0,W,H);
     ctx.strokeStyle=LIME_FAINT;ctx.lineWidth=0.5;
-    for(let i=0;i<=10;i++){ctx.beginPath();ctx.moveTo(i*W/10,0);ctx.lineTo(i*W/10,H);ctx.stroke();}
-    for(let j=0;j<=5;j++){ctx.beginPath();ctx.moveTo(0,j*H/5);ctx.lineTo(W,j*H/5);ctx.stroke();}
+    for(var i=0;i<=10;i++){ctx.beginPath();ctx.moveTo(i*W/10,0);ctx.lineTo(i*W/10,H);ctx.stroke();}
+    for(var j=0;j<=5;j++){ctx.beginPath();ctx.moveTo(0,j*H/5);ctx.lineTo(W,j*H/5);ctx.stroke();}
     ctx.fillStyle=LIME_DIM;
-    for(let i=0;i<=10;i++)for(let j=0;j<=5;j++)ctx.fillRect(i*W/10-1,j*H/5-1,2,2);
-    const points=pts(),endPt=interpolate(points,progress);
+    for(var i=0;i<=10;i++)for(var j=0;j<=5;j++)ctx.fillRect(i*W/10-1,j*H/5-1,2,2);
+    var points=pts(),endPt=interpolate(points,progress);
     ctx.save();ctx.globalAlpha=0.1;ctx.strokeStyle=LIME;ctx.lineWidth=1.5;ctx.setLineDash([3,7]);drawPath(points);ctx.stroke();ctx.setLineDash([]);ctx.restore();
-    const drawn=[],steps=points.length-1;
-    for(let i=0;i<points.length;i++){if(i/steps<=progress)drawn.push(points[i]);}
+    var drawn=[],steps=points.length-1;
+    for(var i=0;i<points.length;i++){if(i/steps<=progress)drawn.push(points[i]);}
     drawn.push(endPt);
     if(drawn.length>1){
       ctx.save();ctx.shadowColor=LIME;ctx.shadowBlur=16;ctx.strokeStyle=LIME;ctx.lineWidth=4;ctx.globalAlpha=0.35;drawPath(drawn);ctx.stroke();ctx.restore();
       ctx.save();ctx.strokeStyle=LIME;ctx.lineWidth=2;ctx.globalAlpha=0.95;ctx.shadowColor=LIME;ctx.shadowBlur=6;drawPath(drawn);ctx.stroke();ctx.restore();
     }
     ctx.save();ctx.fillStyle=LIME;ctx.shadowColor=LIME;ctx.shadowBlur=10;ctx.beginPath();ctx.arc(points[0][0],points[0][1],5,0,Math.PI*2);ctx.fill();ctx.restore();
-    pulse+=0.055;const pr=5+Math.sin(pulse)*2.5;
+    pulse+=0.055;var pr=5+Math.sin(pulse)*2.5;
     ctx.save();ctx.strokeStyle=LIME;ctx.lineWidth=1.5;ctx.globalAlpha=0.4+Math.sin(pulse)*0.3;ctx.shadowColor=LIME;ctx.shadowBlur=18;ctx.beginPath();ctx.arc(endPt[0],endPt[1],pr+5,0,Math.PI*2);ctx.stroke();ctx.restore();
     ctx.save();ctx.fillStyle='#fff';ctx.shadowColor=LIME;ctx.shadowBlur=12;ctx.beginPath();ctx.arc(endPt[0],endPt[1],4.5,0,Math.PI*2);ctx.fill();ctx.restore();
     ctx.font="700 10px 'Barlow Condensed', sans-serif";
     LABELS.forEach(function(item){
       if(progress<item.t-0.01)return;
-      const fade=Math.min(1,(progress-(item.t-0.01))/0.03),pos=interpolate(points,item.t),above=pos[1]>H*0.5,labelY=above?pos[1]-16:pos[1]+22;
+      var fade=Math.min(1,(progress-(item.t-0.01))/0.03),pos=interpolate(points,item.t),above=pos[1]>H*0.5,labelY=above?pos[1]-16:pos[1]+22;
       ctx.save();ctx.globalAlpha=fade*0.75;ctx.fillStyle=LIME;ctx.shadowColor=LIME;ctx.shadowBlur=5;ctx.strokeStyle=LIME;ctx.lineWidth=1;
       ctx.beginPath();ctx.moveTo(pos[0],pos[1]+(above?-5:5));ctx.lineTo(pos[0],pos[1]+(above?-13:13));ctx.stroke();
-      const tw=ctx.measureText(item.text).width;ctx.fillText(item.text,pos[0]-tw/2,labelY);ctx.restore();
+      var tw=ctx.measureText(item.text).width;ctx.fillText(item.text,pos[0]-tw/2,labelY);ctx.restore();
     });
     if(progress<1){progress=Math.min(1,progress+0.005);}
     else if(!loopTimer){loopTimer=setTimeout(function(){progress=0;loopTimer=null;},1800);}
