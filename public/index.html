@@ -199,8 +199,7 @@ function findNearest(){
     const location=country?`${city}, ${country}`:city;
     lbl.innerHTML='<span class="spin">◌</span> Searching '+location+'…';
     showLoading('Searching for iconic runs filmed in '+location);
-    const query=`Find me the most famous or iconic running scene from any film, TV show or music video that was filmed ON LOCATION as close as possible to ${location}. If nothing was filmed in ${city} itself, find the nearest city or location where a famous running scene was actually shot. Always return a result — never return an error.`;
-    try{
+    const query=`The user is at coordinates ${lat.toFixed(3)}, ${lon.toFixed(3)} — which is near ${location}. Find the most iconic running scene from any film, TV show or music video whose ACTUAL FILMING LOCATION is geographically closest to these coordinates. Calculate real distances. Do not default to the most famous running film — pick the one actually filmed nearest to ${lat.toFixed(3)}, ${lon.toFixed(3)}. The waypoints must be the real filming locations with accurate GPS coordinates.`;
       const route=await fetchRoute(query);
       lbl.textContent='Found near you — '+route.name;
       showRoute(99,`Filmed in ${city}: ${route.name} (${route.source})`);
