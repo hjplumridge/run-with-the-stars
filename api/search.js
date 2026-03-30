@@ -34,7 +34,6 @@ const FILMING_LOCATIONS = [
   { film: "The Sound of Music", year: "1965", city: "Salzburg, Austria", lat: 47.8095, lon: 13.0550, hint: "Maria's run through the Alpine meadows filmed on location above Salzburg at Werfen." },
   { film: "Mamma Mia", year: "2008", city: "Skopelos, Greece", lat: 39.1200, lon: 23.7200, hint: "Sophie's run down to the harbour filmed on location on the Greek island of Skopelos." },
   { film: "Vicky Cristina Barcelona", year: "2008", city: "Barcelona, Spain", lat: 41.3851, lon: 2.1734, hint: "Filmed on location across Barcelona — the Gothic Quarter and Barceloneta beach." },
-  { film: "L'Auberge Espagnole", year: "2002", city: "Barcelona, Spain", lat: 41.3900, lon: 2.1500, hint: "Xavier's run through Barcelona's streets filmed on location in the Eixample and Gothic Quarter." },
   { film: "Rocky", year: "1976", city: "Philadelphia, USA", lat: 39.9656, lon: -75.1810, hint: "Rocky's training run up the Art Museum steps filmed entirely on location in Philadelphia." },
   { film: "Silver Linings Playbook", year: "2012", city: "Philadelphia, USA", lat: 40.0379, lon: -75.2463, hint: "Pat's obsessive training runs through suburban Philadelphia filmed on location in Upper Darby." },
   { film: "Forrest Gump", year: "1994", city: "Savannah, USA", lat: 32.0758, lon: -81.0932, hint: "The bench scenes in Chippewa Square, Savannah. The cross-country run used multiple US locations." },
@@ -84,6 +83,32 @@ function haversine(lat1, lon1, lat2, lon2) {
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 }
 
+async function callAI(apiKey, content, maxTokens) {
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
+    body: JSON.stringify({ model: 'claude-sonnet-4-5', max_tokens: maxTokens, messages: [{ role: 'user', content }] }),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error('API call failed');
+  return data.content[0].text.trim().replace(/^```json\s*/i,'').replace(/```\s*$/i,'').trim();
+}
+
+function fallbackRoute(chosen, banner) {
+  return {
+    name: chosen.film,
+    source: chosen.film + ' (' + chosen.year + ')',
+    loc: chosen.city,
+    dist: '5.0KM',
+    elev: '35M',
+    time: '30 MIN',
+    lat: chosen.lat,
+    lon: chosen.lon,
+    note: chosen.hint,
+    waypoints: []
+  };
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -101,33 +126,77 @@ export default async function handler(req, res) {
   console.log('IS LOCATION QUERY:', isLocationQuery);
   console.log('IS LOCATION SEARCH:', isLocationSearch);
 
-  let prompt;
-
+  // ── LOCATION SEARCH (user typed a place name) ──
   if (isLocationSearch) {
     const location = query.replace('LOCATION_SEARCH:', '').trim();
-    prompt = `You are a route planning assistant for "Run With The Stars".
 
-The user has entered this location: "${location}"
+    // Step 1: Ask AI which film was filmed closest to this location
+    let nearestFilm = null;
+    let nearestCity = null;
+    try {
+      const step1Text = await callAI(apiKey,
+        `What is the most iconic running scene from any film, TV show or music video that was filmed closest to "${location}"? The filming location does not have to be in ${location} itself — just as geographically close as possible. Always give your single best answer. Return ONLY valid JSON: { "film": "Film name (year)", "city": "City where it was actually filmed" }`,
+        256
+      );
+      const step1Json = JSON.parse(step1Text);
+      nearestFilm = step1Json.film;
+      nearestCity = step1Json.city;
+    } catch(e) {
+      console.log('Step 1 failed:', e.message);
+    }
 
-Find the single most famous, well-documented running scene from any film, TV show or music video that is publicly known to have been filmed on location at or near ${location}.
+    // Step 2: Match to database by city name, or estimate coords and use haversine
+    let chosen = null;
+    if (nearestCity) {
+      const cityLower = nearestCity.toLowerCase();
+      chosen = FILMING_LOCATIONS.find(loc =>
+        loc.city.toLowerCase().includes(cityLower.split(',')[0].trim()) ||
+        cityLower.includes(loc.city.toLowerCase().split(',')[0].trim())
+      ) || null;
+    }
 
-STRICT RULES:
-- Only suggest something you are certain about. Do not guess or invent filming locations.
-- The scene must have been PHYSICALLY FILMED at or near ${location} — not just set there.
-- If you are not confident, return an error. Do not hallucinate.
-- All waypoints must be real places with accurate GPS coordinates.
+    if (!chosen) {
+      let estLat = 51.5, estLon = -0.1;
+      try {
+        const geoText = await callAI(apiKey,
+          `What are the approximate GPS coordinates of "${location}"? Return ONLY valid JSON: { "lat": number, "lon": number }`,
+          64
+        );
+        const geoJson = JSON.parse(geoText);
+        estLat = geoJson.lat;
+        estLon = geoJson.lon;
+      } catch(e) { console.log('Geocode failed:', e.message); }
+
+      chosen = FILMING_LOCATIONS
+        .map(loc => ({ ...loc, distance: haversine(estLat, estLon, loc.lat, loc.lon) }))
+        .sort((a, b) => a.distance - b.distance)[0];
+    }
+
+    const filmName = nearestFilm || `${chosen.film} (${chosen.year})`;
+    const banner = `Nearest iconic route to ${location}: ${filmName} — filmed in ${chosen.city}`;
+
+    // Step 3: Generate full route — always fall back to database entry if anything fails
+    try {
+      const routeText = await callAI(apiKey, `You are a route planning assistant for "Run With The Stars".
+
+Generate a running route for this specific film scene:
+Film: ${filmName}
+Location: ${chosen.city}
+Centre coordinates: ${chosen.lat}, ${chosen.lon}
+Scene info: ${chosen.hint}
+
+Create 5 real waypoints in ${chosen.city} that trace a route through the actual filming locations. Use accurate GPS coordinates for real streets and landmarks.
 
 Return ONLY valid JSON:
-
 {
-  "name": "Short characterful name with personality",
-  "source": "Film/Show/Artist name and year",
-  "loc": "City, Country",
-  "dist": "distance in KM e.g. 5.1KM",
-  "elev": "elevation gain e.g. 42M",
-  "time": "estimated run time e.g. 28 MIN",
-  "lat": central latitude as number,
-  "lon": central longitude as number,
+  "name": "A short characterful name with personality",
+  "source": "${filmName}",
+  "loc": "${chosen.city}",
+  "dist": "realistic distance e.g. 5.1KM",
+  "elev": "realistic elevation e.g. 42M",
+  "time": "estimated time e.g. 28 MIN",
+  "lat": ${chosen.lat},
+  "lon": ${chosen.lon},
   "note": "One or two sentences about what makes this run special",
   "waypoints": [
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude, "cls": "start" },
@@ -136,10 +205,18 @@ Return ONLY valid JSON:
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude },
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude, "cls": "end" }
   ]
-}
+}`, 1024);
 
-If not confident, return: { "error": "No verified iconic running scene found near ${location}. Try a larger city or well-known filming destination." }`;
+      const route = JSON.parse(routeText);
+      if (route.error) {
+        return res.status(200).json({ route: fallbackRoute(chosen, banner), banner });
+      }
+      return res.status(200).json({ route, banner });
+    } catch(e) {
+      return res.status(200).json({ route: fallbackRoute(chosen, banner), banner });
+    }
 
+  // ── NEAREST ROUTE (GPS coordinates from button) ──
   } else if (isLocationQuery) {
     const userLat = parseFloat(coordMatch[1]);
     const userLon = parseFloat(coordMatch[2]);
@@ -154,27 +231,26 @@ If not confident, return: { "error": "No verified iconic running scene found nea
     const nearest = candidates[0];
     const distanceKm = Math.round(nearest.distance);
 
-    prompt = `You are a route planning assistant for "Run With The Stars".
+    try {
+      const routeText = await callAI(apiKey, `You are a route planning assistant for "Run With The Stars".
 
 Generate a running route for this specific film scene:
-
 Film: ${nearest.film} (${nearest.year})
 Location: ${nearest.city}
 Centre coordinates: ${nearest.lat}, ${nearest.lon}
 Scene info: ${nearest.hint}
 Distance from user: approximately ${distanceKm}km
 
-Create 5 real waypoints in ${nearest.city} that trace a route through the actual filming locations. Use accurate GPS coordinates for real streets and landmarks.
+Create 5 real waypoints in ${nearest.city} that trace a route through the actual filming locations.
 
 Return ONLY valid JSON:
-
 {
-  "name": "A short characterful name for this run with personality",
+  "name": "A short characterful name with personality",
   "source": "${nearest.film} (${nearest.year})",
   "loc": "${nearest.city}",
-  "dist": "realistic running distance in KM e.g. 5.1KM",
-  "elev": "realistic elevation gain e.g. 42M",
-  "time": "estimated run time e.g. 28 MIN",
+  "dist": "realistic distance e.g. 5.1KM",
+  "elev": "realistic elevation e.g. 42M",
+  "time": "estimated time e.g. 28 MIN",
   "lat": ${nearest.lat},
   "lon": ${nearest.lon},
   "note": "One or two sentences about what makes this run special",
@@ -185,24 +261,32 @@ Return ONLY valid JSON:
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude },
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude, "cls": "end" }
   ]
-}`;
+}`, 1024);
 
+      const route = JSON.parse(routeText);
+      if (route.error) return res.status(200).json({ route: fallbackRoute(nearest), banner: null });
+      return res.status(200).json({ route });
+    } catch(e) {
+      return res.status(200).json({ route: fallbackRoute(nearest), banner: null });
+    }
+
+  // ── TITLE SEARCH ──
   } else {
-    prompt = `You are a route planning assistant for "Run With The Stars".
+    try {
+      const routeText = await callAI(apiKey, `You are a route planning assistant for "Run With The Stars".
 
 The user searched for: "${query}"
 
 Find the most iconic running scene from this film, TV show, or music video. Return waypoints based on where it was ACTUALLY FILMED. Use accurate real-world GPS coordinates.
 
 Return ONLY valid JSON:
-
 {
   "name": "Short characterful name with personality",
   "source": "Film/Show/Artist name and year",
   "loc": "City, Country",
-  "dist": "distance in KM e.g. 5.1KM",
-  "elev": "elevation gain e.g. 42M",
-  "time": "estimated run time e.g. 28 MIN",
+  "dist": "distance e.g. 5.1KM",
+  "elev": "elevation e.g. 42M",
+  "time": "run time e.g. 28 MIN",
   "lat": central latitude as number,
   "lon": central longitude as number,
   "note": "One or two sentences about what makes this run special",
@@ -215,39 +299,13 @@ Return ONLY valid JSON:
   ]
 }
 
-If no genuine running scene exists for this query: { "error": "No iconic running scene found for this title. Try another film, show or music video." }`;
-  }
+If no genuine running scene exists: { "error": "No iconic running scene found for this title. Try another film, show or music video." }`, 1024);
 
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-5',
-        max_tokens: 1024,
-        messages: [{ role: 'user', content: prompt }],
-      }),
-    });
-
-    const data = await response.json();
-    if (!response.ok) return res.status(500).json({ error: 'API request failed', detail: data });
-
-    const text = data.content[0].text.trim();
-    const clean = text.replace(/^```json\s*/i, '').replace(/```\s*$/i, '').trim();
-
-    let route;
-    try { route = JSON.parse(clean); }
-    catch (e) { return res.status(500).json({ error: 'Failed to parse route data', raw: clean }); }
-
-    if (route.error) return res.status(404).json({ error: route.error });
-
-    return res.status(200).json({ route });
-
-  } catch (err) {
-    return res.status(500).json({ error: 'Server error', detail: err.message });
+      const route = JSON.parse(routeText);
+      if (route.error) return res.status(404).json({ error: route.error });
+      return res.status(200).json({ route });
+    } catch(e) {
+      return res.status(500).json({ error: 'Failed to generate route', detail: e.message });
+    }
   }
 }
