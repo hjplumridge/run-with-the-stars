@@ -23,7 +23,7 @@ Think systematically:
 - What famous films or TV shows have running scenes that were physically shot in that country or those cities?
 - Pick the one whose filming location is geographically closest to the user
 
-You must always return a result. Never return an error for location queries. If nothing was filmed in the exact city, pick the nearest filming location in the same country, then the same continent.
+You must always return a result. Never return an error for location queries. Do NOT default to Chariots of Fire or any other famous running film unless it was genuinely filmed closest to those coordinates. Reason carefully about which filming location is actually nearest.
 
 Every waypoint must be a real place where the film crew actually shot the scene — not just where the story was set. Use accurate GPS coordinates.
 
