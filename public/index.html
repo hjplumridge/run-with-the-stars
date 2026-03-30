@@ -192,14 +192,14 @@ function findNearest(){
       const geo=await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10`);
       const geoData=await geo.json();
       const addr=geoData.address;
-      city=addr.city||addr.town||addr.county||addr.state_district||addr.state;
+      city=addr.city||addr.town||addr.village||addr.municipality||addr.county||addr.state_district||addr.state;
       country=addr.country||'';
     }catch(e){}
     if(!city){lbl.textContent='Find my nearest iconic route';alert('Could not detect your location. Try searching manually.');return;}
     const location=country?`${city}, ${country}`:city;
     lbl.innerHTML='<span class="spin">◌</span> Searching '+location+'…';
     showLoading('Searching for iconic runs filmed in '+location);
-    const query=`Find me the most famous or iconic running scene from any film, TV show or music video that was actually filmed ON LOCATION in ${location}. The scene must have been physically shot in ${city} — not just set there. Return the route based on the real filming locations in ${city}.`;
+    const query=`Find me the most famous or iconic running scene from any film, TV show or music video that was actually filmed ON LOCATION in ${location} or the nearest major city to it. The scene must have been physically shot there — not just set there. Return the route based on the real filming locations.`;
     try{
       const route=await fetchRoute(query);
       lbl.textContent='Found near you — '+route.name;
