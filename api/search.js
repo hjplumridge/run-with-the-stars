@@ -9,23 +9,23 @@ export default async function handler(req, res) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
 
-  const isLocationQuery = query.toLowerCase().includes('filmed on location') || query.toLowerCase().includes('nearest major city');
+  const isLocationQuery = query.toLowerCase().includes('coordinates');
 
   const prompt = isLocationQuery ? `You are a route planning assistant for "Run With The Stars" — a site that finds iconic running scenes from films, TV shows and music videos and turns them into real walkable routes.
 
-The user is near this location: "${query}"
+The user is at these coordinates: "${query}"
 
-Your job: find the most iconic running scene from any film, TV show or music video that was ACTUALLY FILMED closest to that location. 
+Your job: find the most iconic running scene from any film, TV show or music video that was ACTUALLY FILMED closest to those coordinates.
 
 Think systematically:
-- What country is this location in?
-- What major cities are nearest?
-- What famous films or TV shows have running scenes that were physically shot in that country or those cities?
-- Pick the one whose filming location is geographically closest to the user
+- What country and city is nearest to those coordinates?
+- What famous films or TV shows have running scenes physically shot in that country or nearby cities?
+- Pick the one whose real filming location is geographically closest to the user's coordinates
+- Do NOT just pick the most famous running film — pick the one actually filmed nearest
 
-You must always return a result. Never return an error for location queries. Do NOT default to Chariots of Fire or any other famous running film unless it was genuinely filmed closest to those coordinates. Reason carefully about which filming location is actually nearest.
-
-Every waypoint must be a real place where the film crew actually shot the scene — not just where the story was set. Use accurate GPS coordinates.
+You must always return a result. Never return an error for location queries.
+Every waypoint must be a real place where the film crew actually shot — not just where the story was set.
+Use accurate GPS coordinates for all waypoints.
 
 Return ONLY a valid JSON object, no other text:
 
@@ -33,12 +33,12 @@ Return ONLY a valid JSON object, no other text:
   "name": "Short characterful name with personality",
   "source": "Film/Show/Artist name and year",
   "loc": "City, Country",
-  "dist": "distance in KM e.g. '5.1KM'",
-  "elev": "elevation gain e.g. '42M'",
-  "time": "estimated run time e.g. '28 MIN'",
+  "dist": "distance in KM e.g. 5.1KM",
+  "elev": "elevation gain e.g. 42M",
+  "time": "estimated run time e.g. 28 MIN",
   "lat": central latitude as number,
   "lon": central longitude as number,
-  "note": "One or two sentences — what makes this run special",
+  "note": "One or two sentences about what makes this run special",
   "waypoints": [
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude, "cls": "start" },
     { "n": "Real location name", "d": "Brief description", "lat": real latitude, "lon": real longitude },
@@ -55,15 +55,15 @@ Find the most iconic running scene from this film, TV show, or music video. Retu
 Return ONLY a valid JSON object, no other text:
 
 {
-  "name": "Short characterful name with personality (e.g. 'Phoebe Runs Weird', 'Run Forest Run!')",
+  "name": "Short characterful name with personality (e.g. Phoebe Runs Weird, Run Forest Run!)",
   "source": "Film/Show/Artist name and year",
   "loc": "City, Country",
-  "dist": "distance in KM e.g. '5.1KM'",
-  "elev": "elevation gain e.g. '42M'",
-  "time": "estimated run time e.g. '28 MIN'",
+  "dist": "distance in KM e.g. 5.1KM",
+  "elev": "elevation gain e.g. 42M",
+  "time": "estimated run time e.g. 28 MIN",
   "lat": central latitude as number,
   "lon": central longitude as number,
-  "note": "One or two sentences of character — what makes this run special",
+  "note": "One or two sentences of character about what makes this run special",
   "waypoints": [
     { "n": "Location name", "d": "Brief description", "lat": latitude, "lon": longitude, "cls": "start" },
     { "n": "Location name", "d": "Brief description", "lat": latitude, "lon": longitude },
